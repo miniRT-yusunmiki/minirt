@@ -39,6 +39,8 @@ t_camera	set_camera(char **elem)
 	}
 	camera.right = vcross(vec3(0, 1, 0), camera.dir);
 	camera.up = vcross(camera.right, camera.dir);
+	// printf("%lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
+	// printf("%lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
 	return (camera);
 }
 
