@@ -36,4 +36,7 @@ t_scene 		*set_scene(char *file_name);
 t_object		*object(t_object_type type, void *element);
 void			oadd(t_object **list, t_object *new);
 void			ladd(t_light **list, t_light *new);
+
+void			free_arr(char **arr);
+
 #endif

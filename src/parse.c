@@ -24,7 +24,7 @@ void	parse_line(t_scene *scene, char *s)
 		write(2, "non-existent identifier\n", 24);
 		exit(1);
 	}
-	//elem 메모리 해제
+	free_arr(elem);
 }
 
 void	parse_file(t_scene *scene, char *file_name)
