@@ -9,15 +9,20 @@ MLX = ./mlx/libmlx.a
 NAME = miniRT
 
 SRC_DIR = src
-OBJ_DIR = obj
 MLX_DIR = mlx
 LIB_DIR = lib
 
-SRC_FILE = check_arg.c free.c get_next_line.c list_utils.c main.c parse_object.c parse_scene.c parse_utils.c parse.c scene.c vec_utils.c
-
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
-SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILE))
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILE:.c=.o))
+
+PARSE_SRC = parse.c set_object.c set_scene.c
+UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c
+MAIN_SRC = check_arg.c main.c scene.c
+
+SRCS = $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRC)) \
+		$(addprefix $(SRC_DIR)/util/, $(UTIL_SRC)) \
+		$(addprefix $(SRC_DIR)/, $(MAIN_SRC))
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
@@ -29,16 +34,13 @@ $(NAME): $(LIBFT) $(OBJS)
 $(LIBFT):
 	make -C $(LIB_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
 
 clean:
 	make -C $(LIB_DIR) fclean
 	make -C $(MLX_DIR) clean
-	rm -rf $(OBJ_DIR)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

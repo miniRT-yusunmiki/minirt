@@ -1,6 +1,6 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
-t_color3	parse_ambient_info(char **elem)
+t_color3	set_ambient(char **elem)
 {
 	double		ratio;
 	t_color3	color;
@@ -20,7 +20,7 @@ t_color3	parse_ambient_info(char **elem)
 	return (vmult(color, ratio));
 }
 
-t_camera	parse_camera_info(char **elem)
+t_camera	set_camera(char **elem)
 {
 	t_camera	camera;
 
@@ -58,7 +58,7 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 }
 
 
-t_light	*parse_light_info(char **elem)
+t_light	*set_light(char **elem)
 {
 	t_light	*light;
 

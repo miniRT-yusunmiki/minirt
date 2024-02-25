@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 //vec3 create
 t_vec3	vec3(double x, double y, double z)

@@ -1,6 +1,6 @@
 #include "../include/minirt.h"
 
-t_canvas	canvas(int width, int height)
+t_canvas	set_canvas(int width, int height)
 {
 	t_canvas	canvas;
 
@@ -10,7 +10,7 @@ t_canvas	canvas(int width, int height)
 	return (canvas);
 }
 
-t_mlxinfo	*mlxinfo_init(int width, int height)
+t_mlxinfo	*set_mlx(int width, int height)
 {
 	t_mlxinfo	*m;
 
@@ -31,8 +31,8 @@ t_scene	*set_scene(char *file_name)
 	scene = (t_scene *)malloc(sizeof(t_scene));
 	if (!scene)
 		return (NULL);
-	scene->canvas = canvas(1920, 1080);
-	scene->mlxinfo = mlxinfo_init(scene->canvas.width, scene->canvas.height);
+	scene->canvas = set_canvas(1920, 1080);
+	scene->mlxinfo = set_mlx(scene->canvas.width, scene->canvas.height);
 	scene->world = NULL;
 	scene->lights = NULL;
 	parse_file(scene, file_name);
