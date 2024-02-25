@@ -15,7 +15,7 @@ C_FILE = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c
 		ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 		ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstmap_bonus.c ft_lstadd_front_bonus.c \
 		ft_lstiter_bonus.c ft_lstnew_bonus.c ft_lstclear_bonus.c ft_lstlast_bonus.c ft_lstsize_bonus.c \
-		ft_isspace.c
+		ft_isspace.c ft_strncpy.c ft_split_space.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(C_FILE))
 OBJS = $(addprefix $(OBJ_DIR)/, $(C_FILE:.c=.o))

@@ -13,7 +13,7 @@ OBJ_DIR = obj
 MLX_DIR = mlx
 LIB_DIR = lib
 
-SRC_FILE = check_arg.c ft_split_space.c get_next_line.c light.c main.c object.c open.c parse_object.c parse_scene.c parse_util.c scene.c utils.c
+SRC_FILE = check_arg.c get_next_line.c light.c main.c object.c open.c parse_object.c parse_scene.c parse_util.c scene.c utils.c
 
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILE))

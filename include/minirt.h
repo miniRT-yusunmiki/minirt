@@ -31,8 +31,6 @@ t_color3		get_color(char *s);
 
 int				count_elem(char **elem);
 
-char			**ft_split_space(const char *s);
-
 t_scene 		*set_scene(char *file_name);
 
 t_object		*object(t_object_type type, void *element);

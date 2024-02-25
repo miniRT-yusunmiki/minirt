@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	all_free(char **result, int n)
+static void	all_free(char **result, int n)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ void	all_free(char **result, int n)
 	free(result);
 }
 
-int	check_cnt(const char *str, char c)
+static int	check_cnt(const char *str, char c)
 {
 	int	cnt;
 	int	flag;
@@ -49,20 +49,7 @@ int	check_cnt(const char *str, char c)
 	return (cnt);
 }
 
-void	ft_strncpy(char *dest, const char *src, int n)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != 0 && i < n)
-	{
-		dest[i] = src[i];
-		i += 1;
-	}
-	dest[i] = 0;
-}
-
-char	**allocate_len(char **result, const char *s, char c, int cnt)
+static char	**allocate_len(char **result, const char *s, char c, int cnt)
 {
 	int	flag;
 	int	i;
