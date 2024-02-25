@@ -43,8 +43,8 @@ t_vec3	get_vector(char *s)
 	vector.y = atof(elem[1]);
 	vector.z = atof(elem[2]);
 	if (!((-1.0 <= vector.x && vector.x <= 1.0)
-		&& (-1.0 <= vector.y && vector.y <= 1.0)
-		&& (-1.0 <= vector.z && vector.z <= 1.0)))
+			&& (-1.0 <= vector.y && vector.y <= 1.0)
+			&& (-1.0 <= vector.z && vector.z <= 1.0)))
 	{
 		write(2, "wrong range vector -1.0~1.0\n", 29);
 		exit(1);
@@ -84,8 +84,8 @@ t_color3	get_color(char *s)
 	color.y = atof(elem[1]) / 255;
 	color.z = atof(elem[2]) / 255;
 	if (!((0.0 <= color.x && color.x <= 1.0)
-		&& (0.0 <= color.y && color.y <= 1.0)
-		&& (0.0 <= color.z && color.z <= 1.0)))
+			&& (0.0 <= color.y && color.y <= 1.0)
+			&& (0.0 <= color.z && color.z <= 1.0)))
 	{
 		write(2, "wrong range color 0~255\n", 25);
 		exit(1);
