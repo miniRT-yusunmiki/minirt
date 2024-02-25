@@ -55,7 +55,7 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 	vp.focal_len = (vp.width / 2) / tan((cam.fov * 0.5) * M_PI / 180);
 	focus = vplus(vmult(cam.dir, vp.focal_len), cam.orig);
 	focus_left = vminus(focus, vmult(cam.right, (vp.width * 0.5)));
-	vp.left_upper = vplus(focus_left, cam.up);
+	vp.left_upper = vplus(focus_left, vmult(cam.up, (vp.height * 0.5)));
 	return (vp);
 }
 
