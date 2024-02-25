@@ -34,9 +34,21 @@ t_vec3	get_vector(char *s)
 	t_vec3		vector;
 
 	elem = ft_split(s, ',');
+	if (count_elem(elem) != 3)
+	{
+		write(2, "wrong vector info\n", 18);
+		exit(1);
+	}
 	vector.x = atof(elem[0]);
 	vector.y = atof(elem[1]);
 	vector.z = atof(elem[2]);
+	if (!((-1.0 <= vector.x && vector.x <= 1.0)
+		&& (-1.0 <= vector.y && vector.y <= 1.0)
+		&& (-1.0 <= vector.z && vector.z <= 1.0)))
+	{
+		write(2, "wrong range vector -1.0~1.0\n", 29);
+		exit(1);
+	}
 	return (vector);
 }
 
@@ -46,6 +58,11 @@ t_point3	get_point(char *s)
 	t_point3	point;
 
 	elem = ft_split(s, ',');
+	if (count_elem(elem) != 3)
+	{
+		write(2, "wrong point info\n", 18);
+		exit(1);
+	}
 	point.x = atof(elem[0]);
 	point.y = atof(elem[1]);
 	point.z = atof(elem[2]);
@@ -55,13 +72,25 @@ t_point3	get_point(char *s)
 t_color3	get_color(char *s)
 {
 	char		**elem;
-	t_color3	point;
+	t_color3	color;
 
 	elem = ft_split(s, ',');
-	point.x = atof(elem[0]) / 255;
-	point.y = atof(elem[1]) / 255;
-	point.z = atof(elem[2]) / 255;
-	return (point);
+	if (count_elem(elem) != 3)
+	{
+		write(2, "wrong color info\n", 18);
+		exit(1);
+	}
+	color.x = atof(elem[0]) / 255;
+	color.y = atof(elem[1]) / 255;
+	color.z = atof(elem[2]) / 255;
+	if (!((0.0 <= color.x && color.x <= 1.0)
+		&& (0.0 <= color.y && color.y <= 1.0)
+		&& (0.0 <= color.z && color.z <= 1.0)))
+	{
+		write(2, "wrong range color 0~255\n", 25);
+		exit(1);
+	}
+	return (color);
 }
 
 int	count_elem(char **elem)

@@ -8,7 +8,7 @@ t_sphere	*parse_sphere_info(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong sphere info\n", 20);
+		write(2, "wrong sphere info\n", 19);
 		exit(1);
 	}
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
@@ -25,7 +25,7 @@ t_plane	*parse_plane_info(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong plane info\n", 20);
+		write(2, "wrong plane info\n", 18);
 		exit(1);
 	}
 	plane = (t_plane *)malloc(sizeof(t_plane));
@@ -41,7 +41,7 @@ t_cylinder	*parse_cylinder_info(char **elem)
 
 	if (count_elem(elem) != 6)
 	{
-		write(2, "wrong light info\n", 20);
+		write(2, "wrong cylinder info\n", 21);
 		exit(1);
 	}
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));

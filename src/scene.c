@@ -10,12 +10,15 @@ t_canvas    canvas(int width, int height)
     return (canvas);
 }
 
-t_scene *set_scene(void)
+t_scene *set_scene(char *file_name)
 {
-    t_scene     *scene;
+    t_scene *scene;
 
     if(!(scene = (t_scene *)malloc(sizeof(t_scene))))
         return (NULL);
     scene->canvas = canvas(1200, 900);
+    scene->world = NULL;
+    scene->light = NULL;
+    parse_file(scene, file_name);
     return (scene);
 }

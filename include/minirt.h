@@ -10,6 +10,8 @@
 # include <stdio.h>
 # include <unistd.h>
 
+void			check_arg(int argc, char **argv);
+
 t_color3		parse_ambient_info(char **elem);
 t_camera		parse_camera_info(char **elem);
 t_light			*parse_light_info(char **elem);
@@ -17,11 +19,10 @@ t_sphere		*parse_sphere_info(char **elem);
 t_plane			*parse_plane_info(char **elem);
 t_cylinder		*parse_cylinder_info(char **elem);
 
-void	check_arg(int argc, char **argv);
 
 char	*get_next_line(int fd);
 
-void	open_file(t_scene *scene, char *file_name);
+void	parse_file(t_scene *scene, char *file_name);
 
 double			ft_atof(const char *s);
 t_vec3			get_vector(char *s);
@@ -30,11 +31,11 @@ t_color3		get_color(char *s);
 
 int				count_elem(char **elem);
 
-char		**ft_split_space(const char *s);
+char			**ft_split_space(const char *s);
 
-t_scene		 *set_scene(void);
+t_scene 		*set_scene(char *file_name);
 
-t_object    *object(t_object_type type, void *element);
-void        oadd(t_object **list, t_object *new);
-void	ladd(t_light **list, t_light *new);
+t_object		*object(t_object_type type, void *element);
+void			oadd(t_object **list, t_object *new);
+void			ladd(t_light **list, t_light *new);
 #endif
