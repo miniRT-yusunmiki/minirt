@@ -12,7 +12,6 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	if (Tca < 0)
 		return (FALSE);
 	d = sqrt(vlength2(L) - pow(Tca, 2));
-	// printf("d : %lf\n", d);
 	if (d > sp->radius)
 		return (FALSE);
 	Tnc = sqrt(pow(sp->radius, 2) - pow(d, 2));

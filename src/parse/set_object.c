@@ -14,6 +14,7 @@ t_sphere	*set_sphere(char **elem)
 	sphere->center = get_point(elem[1]);
 	diameter = ft_atof(elem[2]);
 	sphere->radius = diameter / 2;
+	sphere->radius2 = pow(sphere->radius, 2);
 	sphere->color = get_color(elem[3]);
 	return (sphere);
 }

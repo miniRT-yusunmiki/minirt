@@ -37,10 +37,10 @@ t_camera	set_camera(char **elem)
 		write(2, "wrong camera info\n", 20);
 		exit(1);
 	}
-	camera.right = vcross(vec3(0, 1, 0), camera.dir);
-	camera.up = vcross(camera.right, camera.dir);
-	// printf("%lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
-	// printf("%lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
+	camera.right = vunit(vcross(vec3(0, 1, 0), camera.dir));
+	camera.up = vunit(vcross(camera.right, camera.dir));
+	printf("%lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
+	printf("%lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
 	return (camera);
 }
 
