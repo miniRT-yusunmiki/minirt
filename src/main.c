@@ -55,6 +55,7 @@ int	main(int ac, char **av)
 
 	check_arg(ac, av);
 	scene = set_scene(av[1]);
+	// print_info(scene);
 	y = 0;
 	while (y < scene->canvas.height)
 	{

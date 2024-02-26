@@ -12,7 +12,7 @@ t_sphere	*set_sphere(char **elem)
 	}
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
 	sphere->center = get_point(elem[1]);
-	diameter = atof(elem[2]);
+	diameter = ft_atof(elem[2]);
 	sphere->radius = diameter / 2;
 	sphere->color = get_color(elem[3]);
 	return (sphere);

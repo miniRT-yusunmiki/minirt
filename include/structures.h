@@ -1,6 +1,8 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
+# define WRONG_INFO	-999
+
 typedef enum e_bool	t_bool;
 typedef enum e_object_type  t_object_type;
 
