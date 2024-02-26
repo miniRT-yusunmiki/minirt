@@ -44,6 +44,10 @@ void	put_ray_pixel(int y, int x, t_scene *scene)
 	u = (double)x / (scene->canvas.width - 1);
 	v = (double)y / (scene->canvas.height - 1);
 	scene->ray = ray_primary(scene, u, v);
+	// if ((x == 0 && y == 0) || (x == 0 && y == scene->canvas.height - 1))
+	// {
+	// 	printf("%lf %f %lf\n", scene->ray.dir.x, scene->ray.dir.y, scene->ray.dir.z);
+	// }
 	my_mlx_pixel_put(scene, x, y, ray_color(scene));
 }
 
@@ -63,7 +67,6 @@ int	main(int ac, char **av)
 		while (x < scene->canvas.width)
 		{
 			put_ray_pixel(y, x, scene);
-			// printf("%lf %f %lf\n", scene->ray.dir.x, scene->ray.dir.y, scene->ray.dir.z);
 			x++;
 		}
 		y++;

@@ -16,7 +16,7 @@ LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
 PARSE_SRC = parse.c set_object.c set_scene.c
 UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c
-MAIN_SRC = check_arg.c main.c scene.c ray.c
+MAIN_SRC = check_arg.c main.c scene.c ray.c hit.c sphere.c
 
 SRCS = $(addprefix $(SRC_DIR)/parse/, $(PARSE_SRC)) \
 		$(addprefix $(SRC_DIR)/util/, $(UTIL_SRC)) \
