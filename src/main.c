@@ -41,8 +41,8 @@ void	put_ray_pixel(int y, int x, t_scene *scene)
 	double		u;
 	double		v;
 
-	u = ((double)x / (scene->canvas.width - 1)) * scene->viewport.width;
-	v = ((double)y / (scene->canvas.height - 1)) * scene->viewport.height;
+	u = ((double)x / (double)(scene->canvas.width - 1)) * scene->viewport.width;
+	v = ((double)y / (double)(scene->canvas.height - 1)) * scene->viewport.height;
 	scene->ray = ray_primary(scene, u, v);
 	my_mlx_pixel_put(scene, x, y, ray_color(scene));
 }

@@ -37,7 +37,7 @@ t_camera	set_camera(char **elem)
 		write(2, "wrong camera info\n", 20);
 		exit(1);
 	}
-	camera.right = vunit(vcross(vec3(0, 1, 0), camera.dir));
+	camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
 	camera.up = vunit(vcross(camera.right, camera.dir));
 	printf("%lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
 	printf("%lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
@@ -53,7 +53,7 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 	vp.height = 2.0;
 	vp.width = vp.height * canvas.aspect_ratio;
 	vp.focal_len = (vp.width / 2) / tan((cam.fov * 0.5) * M_PI / 180);
-	focus = vplus(vmult(cam.dir, vp.focal_len), cam.orig);
+	focus = vplus(cam.orig, vmult(vunit(cam.dir), vp.focal_len));
 	focus_left = vminus(focus, vmult(cam.right, (vp.width * 0.5)));
 	vp.left_upper = vplus(focus_left, vmult(cam.up, (vp.height * 0.5)));
 	return (vp);
