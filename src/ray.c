@@ -13,6 +13,14 @@ t_ray	ray_primary(t_scene *scene, double u, double v)
 	return (ray);
 }
 
+t_point3	ray_at(t_ray *ray, double t)
+{
+	t_point3	at;
+
+	at = vplus(ray->orig, vmult(ray->dir, t));
+	return (at);
+}
+
 t_hit_record	record_init(void)
 {
 	t_hit_record	record;

@@ -24,7 +24,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 			return (FALSE);
 	}
 	rec->t = t;
-	rec->p = vplus(ray->orig, vmult(ray->dir, rec->t));
+	rec->p = ray_at(ray, t);
 	rec->normal = vminus(rec->p, sp->center);
 	rec->albedo = sp->color;
 	return (TRUE);

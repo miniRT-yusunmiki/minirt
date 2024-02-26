@@ -30,7 +30,7 @@ t_camera	set_camera(char **elem)
 		exit(1);
 	}
 	camera.orig = get_point(elem[1]);
-	camera.dir = get_vector(elem[2]);
+	camera.dir = vunit(get_vector(elem[2]));
 	camera.fov = ft_atof(elem[3]);
 	if (!(0 <= camera.fov && camera.fov <= 180))
 	{
@@ -53,7 +53,7 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 	vp.height = 2.0;
 	vp.width = vp.height * canvas.aspect_ratio;
 	vp.focal_len = (vp.width / 2) / tan((cam.fov * 0.5) * M_PI / 180);
-	focus = vplus(cam.orig, vmult(vunit(cam.dir), vp.focal_len));
+	focus = vplus(cam.orig, vmult(cam.dir, vp.focal_len));
 	focus_left = vminus(focus, vmult(cam.right, (vp.width * 0.5)));
 	vp.left_upper = vplus(focus_left, vmult(cam.up, (vp.height * 0.5)));
 	return (vp);
