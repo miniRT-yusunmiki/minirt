@@ -54,10 +54,16 @@ t_vec3	    	vmult(t_vec3 vec, double t);
 double		    vdot(t_vec3 vec, t_vec3 vec2);
 t_vec3  		vcross(t_vec3 vec, t_vec3 vec2);
 t_vec3	    	vunit(t_vec3 vec);
+t_vec3			vdivide(t_vec3 vec, double t);
 
 t_ray       	ray_primary(t_scene *scene, double u, double v);
 t_color3    	ray_color(t_scene *scene);
+t_point3		ray_at(t_ray *ray, double t);
 
-void	print_info(t_scene *scene);
+t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
+t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
+t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
+
+void			print_info(t_scene *scene);
 
 #endif

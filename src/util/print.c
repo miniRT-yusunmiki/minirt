@@ -27,6 +27,7 @@ void	print_info(t_scene *scene)
 			t_sphere	*sp = scene->world->element;
 			printf("sp.center: %f %f %f\n", sp->center.x, sp->center.y, sp->center.z);
 			printf("sp.radius: %f\n", sp->radius);
+			printf("sp.radius2: %f\n", sp->radius2);
 			printf("sp.color: %f %f %f\n", sp->color.x, sp->color.y, sp->color.z);
 		}
 		else if (scene->world->type == PL)
