@@ -1,6 +1,6 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
-t_color3	parse_ambient_info(char **elem)
+t_color3	set_ambient(char **elem)
 {
 	double		ratio;
 	t_color3	color;
@@ -20,7 +20,7 @@ t_color3	parse_ambient_info(char **elem)
 	return (vmult(color, ratio));
 }
 
-t_camera	parse_camera_info(char **elem)
+t_camera	set_camera(char **elem)
 {
 	t_camera	camera;
 
@@ -39,6 +39,8 @@ t_camera	parse_camera_info(char **elem)
 	}
 	camera.right = vcross(vec3(0, 1, 0), camera.dir);
 	camera.up = vcross(camera.right, camera.dir);
+	// printf("%lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
+	// printf("%lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
 	return (camera);
 }
 
@@ -53,12 +55,12 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 	vp.focal_len = (vp.width / 2) / tan((cam.fov * 0.5) * M_PI / 180);
 	focus = vplus(vmult(cam.dir, vp.focal_len), cam.orig);
 	focus_left = vminus(focus, vmult(cam.right, (vp.width * 0.5)));
-	vp.left_upper = vplus(focus_left, cam.up);
+	vp.left_upper = vplus(focus_left, vmult(cam.up, (vp.height * 0.5)));
 	return (vp);
 }
 
 
-t_light	*parse_light_info(char **elem)
+t_light	*set_light(char **elem)
 {
 	t_light	*light;
 

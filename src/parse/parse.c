@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 void	parse_line(t_scene *scene, char *s)
 {
@@ -8,20 +8,20 @@ void	parse_line(t_scene *scene, char *s)
 	if (!elem[0])
 		return ;
 	if (!ft_strncmp(elem[0], "A", 2))
-		scene->ambient = parse_ambient_info(elem);
+		scene->ambient = set_ambient(elem);
 	else if (!ft_strncmp(elem[0], "C", 2))
 	{
-		scene->camera = parse_camera_info(elem);
+		scene->camera = set_camera(elem);
 		scene->viewport = set_viewport(scene->canvas, scene->camera);
 	}
 	else if (!ft_strncmp(elem[0], "L", 2))
-		ladd(&scene->lights, parse_light_info(elem));
+		ladd(&scene->lights, set_light(elem));
 	else if (!ft_strncmp(elem[0], "sp", 3))
-		oadd(&scene->world, object(SP, parse_sphere_info(elem)));
+		oadd(&scene->world, object(SP, set_sphere(elem)));
 	else if (!ft_strncmp(elem[0], "pl", 3))
-		oadd(&scene->world, object(PL, parse_plane_info(elem)));
+		oadd(&scene->world, object(PL, set_plane(elem)));
 	else if (!ft_strncmp(elem[0], "cy", 3))
-		oadd(&scene->world, object(CY, parse_cylinder_info(elem)));
+		oadd(&scene->world, object(CY, set_cylinder(elem)));
 	else
 	{
 		write(2, "non-existent identifier\n", 24);

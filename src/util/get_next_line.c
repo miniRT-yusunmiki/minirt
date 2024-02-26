@@ -6,11 +6,11 @@
 /*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:53:09 by seonmiki          #+#    #+#             */
-/*   Updated: 2024/02/19 16:31:00 by yusung           ###   ########.fr       */
+/*   Updated: 2024/02/25 17:36:48 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 #define BUFFER_SIZE 42
 
 static int	have_endline(char *backup)

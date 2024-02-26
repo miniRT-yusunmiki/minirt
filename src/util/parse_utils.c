@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 double	ft_atof(const char *s) //s이 올바른 double 형태를 갖춘 경우에 정상 작동하는 atof (문자열 시작과 끝에 공백도 존재하면 안됨)
 {
@@ -91,14 +91,4 @@ t_color3	get_color(char *s)
 		exit(1);
 	}
 	return (color);
-}
-
-int	count_elem(char **elem)
-{
-	int	cnt;
-
-	cnt = 0;
-	while (elem && elem[cnt])
-		cnt++;
-	return (cnt);
 }

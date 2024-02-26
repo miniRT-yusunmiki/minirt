@@ -4,9 +4,13 @@
 typedef enum e_bool	t_bool;
 typedef enum e_object_type  t_object_type;
 
+
 typedef	struct s_vec3 t_vec3;
 typedef struct s_vec3 t_point3;
 typedef struct s_vec3 t_color3;
+
+typedef struct s_ray		t_ray;
+
 typedef	struct s_canvas t_canvas;
 typedef	struct s_camera	t_camera;
 typedef struct s_viewport t_viewport;
@@ -17,6 +21,7 @@ typedef struct s_light t_light;
 typedef struct s_sphere t_sphere;
 typedef struct s_plane t_plane;
 typedef struct s_cylinder t_cylinder;
+
 
 enum  e_bool
 {
@@ -36,6 +41,12 @@ struct s_vec3
 	double	x;
 	double	y;
 	double	z;
+};
+
+struct s_ray
+{
+	t_point3	orig;
+	t_vec3		dir;
 };
 
 struct s_canvas
@@ -82,6 +93,7 @@ struct s_scene
 	t_light		*lights;
 	t_color3	ambient;
 	t_viewport	viewport;
+	t_ray		ray;
 };
 
 struct s_object

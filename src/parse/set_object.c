@@ -1,7 +1,6 @@
+#include "../../include/minirt.h"
 
-#include "../include/minirt.h"
-
-t_sphere	*parse_sphere_info(char **elem)
+t_sphere	*set_sphere(char **elem)
 {
 	t_sphere	*sphere;
 	double		diameter;
@@ -19,7 +18,7 @@ t_sphere	*parse_sphere_info(char **elem)
 	return (sphere);
 }
 
-t_plane	*parse_plane_info(char **elem)
+t_plane	*set_plane(char **elem)
 {
 	t_plane	*plane;
 
@@ -35,7 +34,7 @@ t_plane	*parse_plane_info(char **elem)
 	return (plane);
 }
 
-t_cylinder	*parse_cylinder_info(char **elem)
+t_cylinder	*set_cylinder(char **elem)
 {
 	t_cylinder	*cylinder;
 

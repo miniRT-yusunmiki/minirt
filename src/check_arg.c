@@ -1,8 +1,8 @@
 #include "../include/minirt.h"
 
-t_bool is_rt_file(char *arg1)
+t_bool	is_rt_file(char *arg1)
 {
-	int arg_len;
+	int	arg_len;
 
 	arg_len = ft_strlen(arg1);
 	if (ft_strncmp(&arg1[arg_len - 3], ".rt", 4))
