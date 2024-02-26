@@ -15,7 +15,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 		// printf("\n");
 		return (FALSE);
 	}
-	d = sqrt(vlength(L) - tca);
+	d = sqrt(vlength2(L) - pow(tca, 2));
 	// printf("d: %f, ", d);
 	if (d > sp->radius)
 	{
