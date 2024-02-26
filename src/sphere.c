@@ -6,6 +6,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	double	d;
 	double	Tca;
 	double	Tnc;
+	double	t;
 
 	L = vminus(sp->center, ray->orig);
 	Tca = vdot(ray->dir, L);
@@ -15,8 +16,14 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	if (d > sp->radius)
 		return (FALSE);
 	Tnc = sqrt(pow(sp->radius, 2) - pow(d, 2));
-	rec->t = Tca - Tnc;
-	// printf("%f\n", rec->t);
+	t = Tca - Tnc;
+	if (t < rec->tmin || t > rec->tmax)
+	{
+		t = Tca + Tnc; // 만약 음수이면 다른 실근값도 확인
+		if (t < rec->tmin || t > rec->tmax)
+			return (FALSE);
+	}
+	rec->t = t;
 	rec->p = vplus(ray->orig, vmult(ray->dir, rec->t));
 	rec->normal = vminus(rec->p, sp->center);
 	rec->albedo = sp->color;
