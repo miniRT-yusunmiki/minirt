@@ -90,6 +90,7 @@ struct s_hit_record
 {
     t_point3    p;
     t_vec3      normal;
+	t_vec3		light_dir;
     double      tmin;
     double      tmax;
     double      t;
