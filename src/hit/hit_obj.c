@@ -29,11 +29,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	thc = sqrt(sp->radius2 - pow(d, 2));
 	t = tca - thc;
 	if (t < rec->tmin || t > rec->tmax)
-	{
-		t = tca + thc; // 만약 음수이면 다른 실근값도 확인
-		if (t < rec->tmin || t > rec->tmax)
-			return (FALSE);
-	}
+		return (FALSE);
 	rec->t = t;
 	rec->p = ray_at(ray, rec->t);
 	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
