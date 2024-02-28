@@ -31,7 +31,7 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 		oadd(&scene->world, object(CY, set_cylinder(elem)));
 	else
 	{
-		write(2, "non-existent identifier\n", 24);
+		write(2, "non-existent identifier\n", 25);
 		exit(1);
 	}
 	free_arr(elem);
@@ -62,7 +62,7 @@ void	parse_file(t_scene *scene, char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 	{
-		write(2, "open fail\n", 10);
+		write(2, "open fail\n", 11);
 		exit(1);
 	}
 	init_cnt(&cnt);

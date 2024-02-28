@@ -57,7 +57,7 @@ t_vec3	get_vector(char *s)
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
-		write(2, "wrong vector info\n", 18);
+		write(2, "wrong vector info\n", 19);
 		exit(1);
 	}
 	vector.x = ft_atof(elem[0]);

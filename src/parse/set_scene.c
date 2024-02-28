@@ -26,7 +26,7 @@ t_camera	set_camera(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong camera info\n", 20);
+		write(2, "wrong camera info\n", 19);
 		exit(1);
 	}
 	camera.orig = get_point(elem[1]);
@@ -34,7 +34,7 @@ t_camera	set_camera(char **elem)
 	camera.fov = ft_atof(elem[3]);
 	if (!(0 <= camera.fov && camera.fov <= 180))
 	{
-		write(2, "wrong camera info\n", 20);
+		write(2, "wrong camera info\n", 19);
 		exit(1);
 	}
 	camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
@@ -65,7 +65,7 @@ t_light	*set_light(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong light info\n", 20);
+		write(2, "wrong light info\n", 18);
 		exit(1);
 	}
 	light = (t_light *)malloc(sizeof(t_light));
@@ -73,7 +73,7 @@ t_light	*set_light(char **elem)
 	light->ratio = ft_atof(elem[2]);
 	if (!(0.0 <= light->ratio && light->ratio <= 1.0))
 	{
-		write(2, "wrong light info\n", 20);
+		write(2, "wrong light info\n", 18);
 		exit(1);
 	}
 	light->color = get_color(elem[3]);
