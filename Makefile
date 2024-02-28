@@ -15,11 +15,13 @@ LIB_DIR = lib
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
 HIT_SRC = hit_obj.c hit.c
+LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = parse.c set_object.c set_scene.c
 UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c
 MAIN_SRC = check_arg.c main.c scene.c ray.c
 
 SRCS = $(addprefix $(SRC_DIR)/hit/, $(HIT_SRC)) \
+		$(addprefix $(SRC_DIR)/light/, $(LIGHT_SRC)) \
 		$(addprefix $(SRC_DIR)/parse/, $(PARSE_SRC)) \
 		$(addprefix $(SRC_DIR)/util/, $(UTIL_SRC)) \
 		$(addprefix $(SRC_DIR)/, $(MAIN_SRC))
