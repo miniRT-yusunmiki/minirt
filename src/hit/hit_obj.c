@@ -2,10 +2,13 @@
 
 void	set_face_normal(t_ray *ray, t_hit_record *rec)
 {
-	// 광선과 법선벡터의 내적이 음수이면 카메라가 물체 외부, 양수이면 물체 내부에 위치한다
-	rec->front_face = vdot(ray->dir, rec->normal) < 0;
+	// ray와 법선벡터의 내적이 음수이면 카메라가 물체 외부, 양수이면 물체 내부에 위치한다
+	rec->front_face = TRUE;
+	if (vdot(ray->dir, rec->normal) < 0)
+		rec->front_face = FALSE;
 	// 카메라가 물체 내부에 위치하면 법선벡터를 반대 방향으로 설정
-	rec->normal = (rec->front_face) ? rec->normal : vmult(rec->normal, -1);
+	if (rec->front_face)
+		rec->normal = vmult(rec->normal, -1);
 }
 
 t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
@@ -34,8 +37,8 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	rec->t = t;
 	rec->p = ray_at(ray, rec->t);
 	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
-	rec->color = sp->color;
 	set_face_normal(ray, rec);
+	rec->color = sp->color;
 	return (TRUE);
 }
 
@@ -55,7 +58,7 @@ t_bool	hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec)
 	rec->t = t;
 	rec->p = ray_at(ray, t);
 	rec->normal = pl->normal;
-	rec->color = pl->color;
 	set_face_normal(ray, rec);
+	rec->color = pl->color;
 	return (TRUE);
 }
