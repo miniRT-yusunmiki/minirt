@@ -25,6 +25,15 @@ typedef struct s_sphere t_sphere;
 typedef struct s_plane t_plane;
 typedef struct s_cylinder t_cylinder;
 
+typedef struct s_cnt	t_cnt;
+
+struct s_cnt
+{
+	int a;
+	int c;
+	int l;
+};
+
 enum  e_bool
 {
 	FALSE,
