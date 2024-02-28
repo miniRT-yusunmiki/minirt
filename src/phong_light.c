@@ -9,7 +9,6 @@ t_color3    get_diffuse(t_scene *scene, t_light *light)
     light_dir = vunit(vminus(light->origin, scene->rec.p));     // 점에서 광원으로의 방향벡터
     diff = fmax(0.0, vdot(light_dir, scene->rec.normal));       // light_dir와 법선벡터의 내적값, 두 벡터의 차이
     diffuse = vmult(vmult(light->color, diff), light->ratio);
-    diffuse = vmult(light->color, diff);
     return (diffuse);
 }
 
