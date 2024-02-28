@@ -7,7 +7,7 @@ t_bool  check_shadow(t_scene *scene, t_light *light)
     t_ray           p_to_light;
 
     light_dir = vminus(light->origin, scene->rec.p);
-    shadow_rec.tmin = 0;
+    shadow_rec.tmin = EPSILON;
     shadow_rec.tmax = vlength(light_dir);
     p_to_light.orig = scene->rec.p;
     p_to_light.dir = vunit(light_dir);

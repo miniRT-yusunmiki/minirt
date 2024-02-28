@@ -65,6 +65,7 @@ t_point3		ray_at(t_ray *ray, double t);
 t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
 t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
 t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
+t_bool          hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec);
 
 t_color3        phong_light(t_scene *scene);
 

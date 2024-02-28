@@ -27,8 +27,8 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	hit_result = FALSE;
 	if (world->type == SP)
 		hit_result = hit_sphere(world->element, ray, rec);
-	// else if (world->type == PL)
-	// 	hit_result = hit_plane(t_plane *)world, ray, rec);
+	else if (world->type == PL)
+		hit_result = hit_plane(world->element, ray, rec);
 	// else if (world->type == CY)
 	// 	hit_result = hit_cylinder(t_cylinder *)world, ray, rec);
 	return (hit_result);
