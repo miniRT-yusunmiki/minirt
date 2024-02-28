@@ -71,6 +71,14 @@ t_vec3	vmult(t_vec3 vec, double t)
     return (vec);
 }
 
+t_vec3  vmult_(t_vec3 vec, t_vec3 vec2)
+{
+    vec.x *= vec2.x;
+    vec.y *= vec2.y;
+    vec.z *= vec2.z;
+    return (vec);
+}
+
 //vector in 
 double	vdot(t_vec3 vec, t_vec3 vec2)
 {
@@ -112,4 +120,15 @@ t_vec3	vdivide(t_vec3 vec, double t)
     vec.z *= 1 / t;
 
     return vec;
+}
+
+t_vec3  vmin(t_vec3 vec1, t_vec3 vec2)
+{
+    if (vec1.x > vec2.x)
+        vec1.x = vec2.x;
+    if (vec1.y > vec2.y)
+        vec1.y = vec2.y;
+    if (vec1.z > vec2.z)
+        vec1.z = vec2.z;
+    return (vec1);
 }

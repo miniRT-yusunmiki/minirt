@@ -37,7 +37,7 @@ t_color3	ray_color(t_scene *scene)
 
 	scene->rec = record_init();
 	if (hit(scene->world, &scene->ray, &scene->rec))
-		return (scene->rec.color);
+		return (phong_light(scene));
 	t = 0.5 * (scene->ray.dir.y * 2 + 1.0);
 	// (1-t) * 흰색 + t * 하늘색
 	return (vplus(vmult(color3(1, 1, 1), 1.0 - t), vmult(color3(0.5, 0.7, 1.0), t)));
