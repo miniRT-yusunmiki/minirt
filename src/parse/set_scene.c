@@ -39,8 +39,8 @@ t_camera	set_camera(char **elem)
 	}
 	camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
 	camera.up = vunit(vcross(camera.right, camera.dir));
-	// printf("cam.right: %lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
-	// printf("cam.up: %lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
+	printf("cam.right: %lf %lf %lf\n", camera.right.x, camera.right.y, camera.right.z);
+	printf("cam.up: %lf %lf %lf\n", camera.up.x, camera.up.y, camera.up.z);
 	return (camera);
 }
 
