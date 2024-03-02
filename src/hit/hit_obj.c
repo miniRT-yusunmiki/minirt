@@ -52,3 +52,53 @@ t_bool	hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec)
 	set_face_normal(ray, rec);
 	return (TRUE);
 }
+
+double	check_height(t_cylinder *cy, t_ray *ray, double t)
+{
+	t_vec3	x;
+	double	h;
+
+	x = vminus(ray->orig, cy->bottom_center);
+	h = vdot(ray->dir, cy->normal) * t + vdot(x, cy->normal);
+	if (0 <= h && h <= cy->height)
+		return (h);
+	return (-1);
+}
+
+t_bool	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
+{
+	double	a;
+	double	half_b;
+	double	c;
+	t_vec3	x;
+	double	discriminant;
+	double	sqrtd;
+	double	root;
+
+	x = vminus(ray->orig, cy->bottom_center);
+	a = vlength2(ray->dir) - pow(vdot(ray->dir, cy->normal), 2);
+	half_b = vdot(ray->dir, x) - vdot(ray->dir, cy->normal) * vdot(x, cy->normal);
+	c = vlength2(x) - pow(vdot(x, cy->normal), 2) - pow(cy->radius, 2);
+	
+	discriminant = half_b * half_b - a * c;
+	if (discriminant < 0)
+		return (FALSE);
+	sqrtd = sqrt(discriminant);
+	root = (-half_b - sqrtd) / a;
+	if (root < rec->tmin || root > rec->tmax)
+	{
+		root = (-half_b + sqrtd) / a;
+		if (root < rec->tmin || root > rec->tmax)
+			return (FALSE);
+	}
+	double	h;
+	h = check_height(cy, ray, root);
+	if (h == -1)
+		return (FALSE);
+	rec->t = root;
+	rec->p = ray_at(ray, root);
+	rec->normal = vminus(vplus(cy->bottom_center, vmults(cy->normal, h)), rec->p);
+	set_face_normal(ray, rec);
+	rec->color = cy->color;
+	return (TRUE);
+}

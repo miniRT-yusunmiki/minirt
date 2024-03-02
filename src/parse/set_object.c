@@ -47,8 +47,9 @@ t_cylinder	*set_cylinder(char **elem)
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
 	cylinder->center = get_point(elem[1]);
 	cylinder->normal = get_vector(elem[2]);
-	cylinder->diameter = ft_atof(elem[3]);
+	cylinder->radius = ft_atof(elem[3]) / 2;
 	cylinder->height = ft_atof(elem[4]);
 	cylinder->color = get_color(elem[5]);
+	cylinder->bottom_center = vplus(cylinder->center, vmults(cylinder->normal, (cylinder->height / 2) * -1));
 	return (cylinder);
 }

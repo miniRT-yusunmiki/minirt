@@ -145,9 +145,10 @@ struct s_cylinder
 {
 	t_point3	center;
 	t_vec3		normal;
-	double		diameter;
+	double		radius;
 	double		height;
 	t_color3	color;
+	t_point3	bottom_center;
 };
 
 #endif

@@ -66,6 +66,7 @@ t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
 t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
 t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
 t_bool			hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec);
+t_bool      	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec);
 
 t_bool			in_shadow(t_scene *scene, t_light *light, t_hit_record *rec);
 t_color3		get_diffuse(t_hit_record *rec, t_light *light);

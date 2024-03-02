@@ -42,7 +42,7 @@ void	print_info(t_scene *scene)
 			t_cylinder	*cy = scene->world->element;
 			printf("cy.center: %f %f %f\n", cy->center.x, cy->center.y, cy->center.z);
 			printf("cy.normal: %f %f %f\n", cy->normal.x, cy->normal.y, cy->normal.z);
-			printf("cy.diameter: %f\n", cy->diameter);
+			// printf("cy.diameter: %f\n", cy->diameter);
 			printf("cy.height: %f\n", cy->height);
 			printf("cy.color: %f %f %f\n", cy->color.x, cy->color.y, cy->color.z);
 		}
