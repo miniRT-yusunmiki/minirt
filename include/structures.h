@@ -149,6 +149,7 @@ struct s_cylinder
 	double		height;
 	t_color3	color;
 	t_point3	bottom_center;
+	t_point3	top_center;
 };
 
 #endif

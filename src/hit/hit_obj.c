@@ -65,7 +65,55 @@ double	check_height(t_cylinder *cy, t_ray *ray, double t)
 	return (-1);
 }
 
-t_bool	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
+t_bool	hit_cylinder_top(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
+{
+	t_plane	top;
+	t_hit_record	tmp_rec;
+
+	top.normal = cy->normal;
+	top.point = cy->top_center;
+	top.color = cy->color;
+	tmp_rec.tmax = rec->tmax;
+	tmp_rec.tmin = rec->tmin;
+	if (hit_plane(&top, ray, &tmp_rec))
+	{
+		if (vlength(vminus(tmp_rec.p, cy->top_center)) <= cy->radius)
+		{
+			rec->t = tmp_rec.t;
+			rec->p = tmp_rec.p;
+			rec->normal = tmp_rec.normal;
+			rec->color = tmp_rec.color;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
+t_bool	hit_cylinder_bottom(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
+{
+	t_plane	bottom;
+	t_hit_record	tmp_rec;
+
+	bottom.normal = cy->normal;
+	bottom.point = cy->bottom_center;
+	bottom.color = cy->color;
+	tmp_rec.tmax = rec->tmax;
+	tmp_rec.tmin = rec->tmin;
+	if (hit_plane(&bottom, ray, &tmp_rec))
+	{
+		if (vlength(vminus(tmp_rec.p, cy->bottom_center)) <= cy->radius)
+		{
+			rec->t = tmp_rec.t;
+			rec->p = tmp_rec.p;
+			rec->normal = tmp_rec.normal;
+			rec->color = tmp_rec.color;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
+t_bool	hit_curved_surface(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 {
 	double	a;
 	double	half_b;
@@ -100,5 +148,21 @@ t_bool	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	rec->normal = vminus(vplus(cy->bottom_center, vmults(cy->normal, h)), rec->p);
 	set_face_normal(ray, rec);
 	rec->color = cy->color;
+	hit_cylinder_top(cy, ray, rec);
 	return (TRUE);
+}
+
+
+t_bool	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
+{
+	t_bool	hit_cy;
+
+	hit_cy = FALSE;
+	if (hit_cylinder_top(cy, ray, rec))
+		hit_cy = TRUE;
+	if (hit_cylinder_bottom(cy, ray, rec))
+		hit_cy = TRUE;
+	if (hit_curved_surface(cy, ray, rec))
+		hit_cy = TRUE;
+	return (hit_cy);
 }
