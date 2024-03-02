@@ -14,7 +14,7 @@ LIB_DIR = lib
 
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
-HIT_SRC = hit_obj.c hit.c
+HIT_SRC = hit_cylinder.c hit_obj.c hit.c
 LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = parse.c set_object.c set_scene.c
 UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c

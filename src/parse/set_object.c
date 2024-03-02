@@ -52,8 +52,5 @@ t_cylinder	*set_cylinder(char **elem)
 	cylinder->color = get_color(elem[5]);
 	cylinder->bottom_center = vplus(cylinder->center, vmults(cylinder->normal, (cylinder->height / 2) * -1));
 	cylinder->top_center = vplus(cylinder->center, vmults(cylinder->normal, (cylinder->height / 2)));
-	// printf("cy.top: %f %f %f\n", cylinder->top_center.x, cylinder->top_center.y, cylinder->top_center.z);
-	// printf("cy.bottom: %f %f %f\n", cylinder->bottom_center.x, cylinder->bottom_center.y, cylinder->bottom_center.z);
-
 	return (cylinder);
 }
