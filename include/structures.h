@@ -93,6 +93,7 @@ struct s_mlxinfo
 	int		pbits;
 	int		len;
 	int		endian;
+	t_scene	*scene;
 };
 
 struct s_hit_record

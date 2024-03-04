@@ -33,3 +33,10 @@ t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 	// 	hit_result = hit_cylinder(world->element, ray, rec);
 	return (hit_result);
 }
+
+void	set_face_normal(t_ray *r, t_hit_record *rec)
+{
+	rec->front_face = vdot(r->dir, rec->normal) < 0;
+	if (rec->front_face == FALSE)
+		rec->normal = vmults(rec->normal, -1);
+}
