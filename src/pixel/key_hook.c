@@ -2,7 +2,7 @@
 
 void	cam_left(t_scene *scene)
 {
-	scene->camera.dir.x += 0.1;
+	scene->camera.dir = vmin(vplus(scene->camera.dir, vec3(0.1, 0, 0)), vec3(1, 1, 1));
 	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
 	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
@@ -35,6 +35,23 @@ void	cam_down(t_scene *scene)
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene);
 }
+void	cam_zoomin(t_scene *scene)
+{
+	scene->camera.dir.z -= 0.1;
+	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
+	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
+	scene->viewport = set_viewport(scene->canvas, scene->camera);
+	shoot_ray(scene);
+}
+
+void	cam_zoomout(t_scene *scene)
+{
+	scene->camera.dir = vmin(vplus(scene->camera.dir, vec3(0, 0, 0.1)), vec3(1, 1, 1));
+	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
+	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
+	scene->viewport = set_viewport(scene->canvas, scene->camera);
+	shoot_ray(scene);
+}
 
 int	key_hook(int keycode, t_mlxinfo *mlx_info)
 {
@@ -51,5 +68,9 @@ int	key_hook(int keycode, t_mlxinfo *mlx_info)
 		cam_up(mlx_info->scene);
 	else if (keycode == 125)
 		cam_down(mlx_info->scene);
+	else if (keycode == 82)
+		cam_zoomin(mlx_info->scene);
+	else if (keycode == 83)
+		cam_zoomout(mlx_info->scene);
 	return (0);
 }

@@ -93,7 +93,6 @@ t_scene 		*set_scene(char *file_name);
 
 void			shoot_ray(t_scene *scene);
 
-
 void			print_info(t_scene *scene);
 
 #endif
