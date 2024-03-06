@@ -26,13 +26,28 @@ void	my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color)
 	*(unsigned int *)dst = color;
 }
 
-void	put_ray_pixel(int y, int x, t_scene *scene)
+void	put_ray_pixel(int y, int x, t_scene *scene, int dummy)
 {
 	double		u;
 	double		v;
+	int			yy;
+	int			xx;
+	t_color3	pixel_color;
 
 	u = (double)x / (double)(scene->canvas.width - 1) * scene->viewport.width;
 	v = (double)y / (double)(scene->canvas.height - 1) * scene->viewport.height;
 	scene->ray = ray_primary(scene, u, v);
-	my_mlx_pixel_put(scene, x, y, ray_color(scene));
+	pixel_color = ray_color(scene);
+	if (dummy == FALSE)
+		my_mlx_pixel_put(scene, x, y, pixel_color);
+	else
+	{
+		yy = 0;
+		while (yy < 50 && y + yy++ < scene->canvas.height - 1)
+		{
+			xx = 0;
+			while (xx < 50 && x + xx++ < scene->canvas.width - 1)
+				my_mlx_pixel_put(scene, x + xx, y + yy, pixel_color);
+		}
+	}
 }

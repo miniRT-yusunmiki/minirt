@@ -44,7 +44,7 @@ void			cam_down(t_scene *scene);
 int				key_hook(int keycode, t_mlxinfo *mlx_info);
 int				rgb_to_int(t_color3 pixel_color);
 void			my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color);
-void			put_ray_pixel(int y, int x, t_scene *scene);
+void			put_ray_pixel(int y, int x, t_scene *scene, int dummy);
 
 // util
 char			*get_next_line(int fd);
@@ -91,7 +91,7 @@ t_canvas		set_canvas(int width, int height);
 t_mlxinfo		*set_mlx(int width, int height, t_scene *scene);
 t_scene 		*set_scene(char *file_name);
 
-void			shoot_ray(t_scene *scene);
+void			shoot_ray(t_scene *scene, int dummy);
 
 void			print_info(t_scene *scene);
 
