@@ -14,7 +14,7 @@ LIB_DIR = lib
 
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
-HIT_SRC = hit_plane.c hit_sphere.c hit.c
+HIT_SRC = hit_cylinder.c hit_plane.c hit_sphere.c hit.c
 LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = parse.c set_object.c set_scene.c
 PIXEL_SRC = key_hook.c pixel_put.c

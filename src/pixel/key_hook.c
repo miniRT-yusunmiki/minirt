@@ -2,8 +2,7 @@
 
 void	cam_left(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
-	scene->camera.dir.x += 0.1;
+	scene->camera.dir = vunit(vplus(scene->camera.dir, vmults(scene->camera.right, -0.1)));
 	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
 	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
@@ -12,8 +11,8 @@ void	cam_left(t_scene *scene)
 
 void	cam_right(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
-	scene->camera.dir.x -= 0.1;
+
+	scene->camera.dir = vunit(vplus(scene->camera.dir, vmults(scene->camera.right, 0.1)));
 	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
 	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
@@ -22,7 +21,7 @@ void	cam_right(t_scene *scene)
 
 void	cam_up(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
+	scene->camera.dir = vunit(vplus(scene->camera.dir, vmults(scene->camera.up, 0.1)));
 	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
 	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
@@ -31,8 +30,7 @@ void	cam_up(t_scene *scene)
 
 void	cam_down(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
-	scene->camera.dir.y -= 0.1;
+	scene->camera.dir = vunit(vplus(scene->camera.dir, vmults(scene->camera.up, -0.1)));
 	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
 	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
@@ -40,20 +38,14 @@ void	cam_down(t_scene *scene)
 }
 void	cam_zoomin(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
-	scene->camera.dir.z -= 0.1;
-	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
-	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
+	scene->camera.orig = vplus(scene->camera.orig, vec3(0, 0, 10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
 
 void	cam_zoomout(t_scene *scene)
 {
-	scene->camera.dir = vmults(scene->camera.dir, 0.9);
-	scene->camera.dir.z += 0.1;
-	scene->camera.right = vunit(vcross(scene->camera.dir, vec3(0, 1, 0)));
-	scene->camera.up = vunit(vcross(scene->camera.right, scene->camera.dir));
+	scene->camera.orig = vplus(scene->camera.orig, vec3(0, 0, -10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
@@ -73,9 +65,9 @@ int	key_hook(int keycode, t_mlxinfo *mlx_info)
 		cam_up(mlx_info->scene);
 	else if (keycode == 125)
 		cam_down(mlx_info->scene);
-	else if (keycode == 82)
+	else if (keycode == 83) //1
 		cam_zoomin(mlx_info->scene);
-	else if (keycode == 83)
+	else if (keycode == 82) //0
 		cam_zoomout(mlx_info->scene);
 	else if (keycode == 15)
 		shoot_ray(mlx_info->scene, FALSE);
