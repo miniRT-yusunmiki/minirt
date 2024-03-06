@@ -37,18 +37,19 @@ t_plane	*set_plane(char **elem)
 
 t_cylinder	*set_cylinder(char **elem)
 {
-	t_cylinder	*cylinder;
+	t_cylinder	*cy;
 
 	if (count_elem(elem) != 6)
 	{
 		write(2, "wrong cylinder info\n", 21);
 		exit(1);
 	}
-	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	cylinder->center = get_point(elem[1]);
-	cylinder->normal = get_vector(elem[2]);
-	cylinder->diameter = ft_atof(elem[3]);
-	cylinder->height = ft_atof(elem[4]);
-	cylinder->color = get_color(elem[5]);
-	return (cylinder);
+	cy = (t_cylinder *)malloc(sizeof(t_cylinder));
+	cy->bottom_center = get_point(elem[1]);
+	cy->normal = get_vector(elem[2]);
+	cy->radius = ft_atof(elem[3]) * 0.5;
+	cy->height = ft_atof(elem[4]);
+	cy->color = get_color(elem[5]);
+	cy->top_center = vplus(cy->bottom_center, vmults(cy->normal, cy->height));
+	return (cy);
 }

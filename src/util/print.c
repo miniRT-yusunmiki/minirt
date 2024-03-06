@@ -40,9 +40,10 @@ void	print_info(t_scene *scene)
 		else if (scene->world->type == CY)
 		{
 			t_cylinder	*cy = scene->world->element;
-			printf("cy.center: %f %f %f\n", cy->center.x, cy->center.y, cy->center.z);
+			printf("cy.top_center: %f %f %f\n", cy->top_center.x, cy->top_center.y, cy->top_center.z);
+			printf("cy.bottom_center: %f %f %f\n", cy->bottom_center.x, cy->bottom_center.y, cy->bottom_center.z);
 			printf("cy.normal: %f %f %f\n", cy->normal.x, cy->normal.y, cy->normal.z);
-			printf("cy.diameter: %f\n", cy->diameter);
+			printf("cy.radius: %f\n", cy->radius);
 			printf("cy.height: %f\n", cy->height);
 			printf("cy.color: %f %f %f\n", cy->color.x, cy->color.y, cy->color.z);
 		}
