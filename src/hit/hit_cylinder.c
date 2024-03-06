@@ -29,7 +29,7 @@ t_bool	hit_cy_bottom(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	t_plane	top;
 	t_hit_record	tmp_rec;
 
-	top.normal = vmults(cy->normal, 1);
+	top.normal = vmults(cy->normal, -1);
 	top.point = cy->bottom_center;
 	top.color = cy->color;
 	tmp_rec.tmax = rec->tmax;
@@ -40,7 +40,7 @@ t_bool	hit_cy_bottom(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 		{
 			rec->t = tmp_rec.t;
 			rec->p = tmp_rec.p;
-			rec->normal = tmp_rec.normal;
+			rec->normal = vmults(tmp_rec.normal, -1);
 			rec->color = tmp_rec.color;
 			return (TRUE);
 		}
@@ -55,7 +55,7 @@ t_bool	in_height_range(t_cylinder *cy, t_ray *ray, t_hit_record *rec, double t)
 	h = vdot(ray->orig, cy->normal) + (t * vdot(ray->dir, cy->normal)) - vdot(cy->bottom_center, cy->normal);
 	if (0 <= h && h <= cy->height)
     {
-    	rec->normal = vplus(vplus(cy->bottom_center, vmults(cy->normal, h)), ray_at(ray, t));
+    	rec->normal = vunit(vplus(vplus(cy->bottom_center, vmults(cy->normal, h)), ray_at(ray, t)));
         return (TRUE);
     }
 	return (FALSE);
