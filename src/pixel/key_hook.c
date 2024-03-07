@@ -38,14 +38,14 @@ void	cam_down(t_scene *scene)
 }
 void	cam_zoomin(t_scene *scene)
 {
-	scene->camera.orig = vplus(scene->camera.orig, vec3(0, 0, 10));
+	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.dir, 10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
 
 void	cam_zoomout(t_scene *scene)
 {
-	scene->camera.orig = vplus(scene->camera.orig, vec3(0, 0, -10));
+	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.dir, -10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
@@ -69,7 +69,7 @@ int	key_hook(int keycode, t_mlxinfo *mlx_info)
 		cam_zoomin(mlx_info->scene);
 	else if (keycode == 82) //0
 		cam_zoomout(mlx_info->scene);
-	else if (keycode == 15)
+	else if (keycode == 15) //r
 		shoot_ray(mlx_info->scene, FALSE);
 	return (0);
 }
