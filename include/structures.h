@@ -24,6 +24,7 @@ typedef struct s_light t_light;
 typedef struct s_sphere t_sphere;
 typedef struct s_plane t_plane;
 typedef struct s_cylinder t_cylinder;
+typedef struct s_formula t_formula;
 
 typedef struct s_cnt	t_cnt;
 
@@ -93,6 +94,7 @@ struct s_mlxinfo
 	int		pbits;
 	int		len;
 	int		endian;
+	t_scene	*scene;
 };
 
 struct s_hit_record
@@ -152,11 +154,22 @@ struct s_plane
 
 struct s_cylinder
 {
-	t_point3	center;
+	t_point3	top_center;
+	t_point3	bottom_center;
 	t_vec3		normal;
-	double		diameter;
+	double		radius;
 	double		height;
 	t_color3	color;
+};
+
+struct s_formula
+{
+	double	a;
+	double	half_b;
+	double	c;
+	double	discriminant;
+	double	sqrtd;
+	double	root;
 };
 
 #endif

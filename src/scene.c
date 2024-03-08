@@ -10,7 +10,7 @@ t_canvas	set_canvas(int width, int height)
 	return (canvas);
 }
 
-t_mlxinfo	*set_mlx(int width, int height)
+t_mlxinfo	*set_mlx(int width, int height, t_scene *scene)
 {
 	t_mlxinfo	*m;
 
@@ -21,6 +21,7 @@ t_mlxinfo	*set_mlx(int width, int height)
 	m->win_ptr = mlx_new_window(m->mlx_ptr, width, height, "miniRT");
 	m->img_ptr = mlx_new_image(m->mlx_ptr, width, height);
 	m->img_addr = mlx_get_data_addr(m->img_ptr, &m->pbits, &m->len, &m->endian);
+	m->scene = scene;
 	return (m);
 }
 
@@ -32,7 +33,7 @@ t_scene	*set_scene(char *file_name)
 	if (!scene)
 		return (NULL);
 	scene->canvas = set_canvas(1920, 1080);
-	scene->mlxinfo = set_mlx(scene->canvas.width, scene->canvas.height);
+	scene->mlxinfo = set_mlx(scene->canvas.width, scene->canvas.height, scene);
 	scene->world = NULL;
 	scene->lights = NULL;
 	parse_file(scene, file_name);

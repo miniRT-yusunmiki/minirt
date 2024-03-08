@@ -10,35 +10,56 @@
 # include <stdio.h>
 # include <unistd.h>
 
-void			check_arg(int argc, char **argv);
+// hit
+t_bool			hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec);
+t_bool			hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec);
+t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
+t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
+t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
+void			set_face_normal(t_ray *r, t_hit_record *rec);
 
-t_mlxinfo   	*set_mlx(int width, int height);
-t_color3		set_ambient(char **elem);
-t_camera		set_camera(char **elem);
-t_viewport		set_viewport(t_canvas canvas, t_camera cam);
-t_light			*set_light(char **elem);
+// light
+t_bool			in_shadow(t_scene *scene, t_light *light, t_hit_record *rec);
+t_color3		get_diffuse(t_hit_record *rec, t_light *light);
+
+// parse
+void			parse_line(t_scene *scene, char *s, t_cnt *cnt);
+void			init_cnt(t_cnt *cnt);
+void			check_id_cnt(t_cnt cnt);
+void			parse_file(t_scene *scene, char *file_name);
 
 t_sphere		*set_sphere(char **elem);
 t_plane			*set_plane(char **elem);
 t_cylinder		*set_cylinder(char **elem);
 
+t_color3		set_ambient(char **elem);
+t_camera		set_camera(char **elem);
+t_viewport		set_viewport(t_canvas canvas, t_camera cam);
+t_light			*set_light(char **elem);
+
+// pixel
+void			cam_left(t_scene *scene);
+void			cam_right(t_scene *scene);
+void			cam_up(t_scene *scene);
+void			cam_down(t_scene *scene);
+int				key_hook(int keycode, t_mlxinfo *mlx_info);
+int				rgb_to_int(t_color3 pixel_color);
+void			my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color);
+void			put_ray_pixel(int y, int x, t_scene *scene, int dummy);
+
+// util
 char			*get_next_line(int fd);
 
-void			parse_file(t_scene *scene, char *file_name);
+t_object		*object(t_object_type type, void *element);
+void			oadd(t_object **list, t_object *new);
+void			ladd(t_light **list, t_light *new);
 
+int				sign_check(const char *s, int *i);
 double			ft_atof(const char *s);
 t_vec3			get_vector(char *s);
 t_point3		get_point(char *s);
 t_color3		get_color(char *s);
 
-t_scene 		*set_scene(char *file_name);
-
-// utils - list_utils.c
-t_object		*object(t_object_type type, void *element);
-void			oadd(t_object **list, t_object *new);
-void			ladd(t_light **list, t_light *new);
-
-// utils - utils.c
 int				count_elem(char **elem);
 void			free_arr(char **arr);
 
@@ -58,17 +79,20 @@ t_vec3	    	vunit(t_vec3 vec);
 t_vec3			vdivide(t_vec3 vec, double t);
 t_vec3  		vmin(t_vec3 vec1, t_vec3 vec2);
 
+t_bool			is_rt_file(char *arg1);
+void			check_arg(int argc, char **argv);
+
+void			parse_file(t_scene *scene, char *file_name);
+
 t_ray       	ray_primary(t_scene *scene, double u, double v);
-t_color3    	ray_color(t_scene *scene);
 t_point3		ray_at(t_ray *ray, double t);
+t_color3    	ray_color(t_scene *scene);
 
-t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
-t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
-t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
-t_bool			hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec);
+t_canvas		set_canvas(int width, int height);
+t_mlxinfo		*set_mlx(int width, int height, t_scene *scene);
+t_scene 		*set_scene(char *file_name);
 
-t_bool			in_shadow(t_scene *scene, t_light *light, t_hit_record *rec);
-t_color3		get_diffuse(t_hit_record *rec, t_light *light);
+void			shoot_ray(t_scene *scene, int dummy);
 
 void			print_info(t_scene *scene);
 
