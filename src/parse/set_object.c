@@ -30,7 +30,7 @@ t_plane	*set_plane(char **elem)
 	}
 	plane = (t_plane *)malloc(sizeof(t_plane));
 	plane->point = get_point(elem[1]);
-	plane->normal = get_vector(elem[2]);
+	plane->normal = vunit(get_vector(elem[2]));
 	plane->color = get_color(elem[3]);
 	return (plane);
 }
@@ -46,7 +46,7 @@ t_cylinder	*set_cylinder(char **elem)
 	}
 	cy = (t_cylinder *)malloc(sizeof(t_cylinder));
 	cy->bottom_center = get_point(elem[1]);
-	cy->normal = get_vector(elem[2]);
+	cy->normal = vunit(get_vector(elem[2]));
 	cy->radius = ft_atof(elem[3]) * 0.5;
 	cy->height = ft_atof(elem[4]);
 	cy->color = get_color(elem[5]);
