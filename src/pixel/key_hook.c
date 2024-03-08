@@ -36,19 +36,34 @@ void	cam_down(t_scene *scene)
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
-void	cam_move_up(t_scene *scene)
+void	cam_move_in(t_scene *scene)
 {
 	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.dir, 10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
 
-void	cam_move_down(t_scene *scene)
+void	cam_move_out(t_scene *scene)
 {
 	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.dir, -10));
 	scene->viewport = set_viewport(scene->canvas, scene->camera);
 	shoot_ray(scene, TRUE);
 }
+
+void	cam_move_up(t_scene *scene)
+{
+	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.up, 10));
+	scene->viewport = set_viewport(scene->canvas, scene->camera);
+	shoot_ray(scene, TRUE);
+}
+
+void	cam_move_down(t_scene *scene)
+{
+	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.up, -10));
+	scene->viewport = set_viewport(scene->canvas, scene->camera);
+	shoot_ray(scene, TRUE);
+}
+
 void	cam_move_left(t_scene *scene)
 {
 	scene->camera.orig = vplus(scene->camera.orig, vmults(scene->camera.right, -10));
@@ -84,9 +99,13 @@ int	key_hook(int keycode, t_mlxinfo *mlx_info)
 		cam_up(mlx_info->scene);
 	else if (keycode == 125)
 		cam_down(mlx_info->scene);
-	else if (keycode == 13) //1
+	else if (keycode == 83) //1
+		cam_move_in(mlx_info->scene);
+	else if (keycode == 82) //0
+		cam_move_out(mlx_info->scene);
+	else if (keycode == 13)
 		cam_move_up(mlx_info->scene);
-	else if (keycode == 1) //0
+	else if (keycode == 1)
 		cam_move_down(mlx_info->scene);
 	else if (keycode == 0) //1
 		cam_move_left(mlx_info->scene);

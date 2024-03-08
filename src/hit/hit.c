@@ -5,7 +5,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 	t_bool		hit_anything;
 	t_hit_record	temp_rec;
 
-	temp_rec = *rec; // temp_rec의 tmin, tmax 값 초기화를 위해
+	temp_rec = *rec;
 	hit_anything = FALSE;
 	while(world)
 	{

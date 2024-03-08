@@ -21,7 +21,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 		return (FALSE);
 	rec->t = tca - thc;
 	rec->p = ray_at(ray, t);
-	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
+	rec->normal = vunit(vdivide(vminus(rec->p, sp->center), sp->radius));
 	rec->color = sp->color;
 	set_face_normal(ray, rec);
 	return (TRUE);
