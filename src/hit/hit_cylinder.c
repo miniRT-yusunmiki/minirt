@@ -88,25 +88,47 @@ t_bool	hit_curved_surface(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 		if (root < rec->tmin || root > rec->tmax)
 			return (FALSE);
 	}
+	rec->p = ray_at(ray, root);
 	if (!in_height_range(cy, ray, rec, root))
 		return (FALSE);
 	rec->t = root;
-	rec->p = ray_at(ray, root);
 	set_face_normal(ray, rec);
 	rec->color = cy->color;
 	return (TRUE);
 }
 
+void	copy_rec(t_hit_record *dest, t_hit_record *src)
+{
+	dest->color = src->color;
+	dest->front_face = src->front_face;
+	dest->p = src->p;
+	dest->t = src->t;
+	dest->tmax = src->tmax;
+	dest->tmin = src->tmin;
+}
+
 t_bool	hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 {
-	t_bool	hit_cy;
+	t_bool			hit_cy;
+	t_hit_record	cy_rec;
 
 	hit_cy = FALSE;
-	if (hit_cylinder_top(cy, ray, rec))
+	cy_rec.tmax = rec->tmax;
+	cy_rec.tmin = rec->tmin;
+	if (hit_cylinder_top(cy, ray, &cy_rec))
+	{
 		hit_cy = TRUE;
-	if (hit_cylinder_bottom(cy, ray, rec))
+		copy_rec(rec, &cy_rec);
+	}
+	if (hit_cylinder_bottom(cy, ray, &cy_rec))
+	{
 		hit_cy = TRUE;
-	if (hit_curved_surface(cy, ray, rec))
+		copy_rec(rec, &cy_rec);
+	}
+	if (hit_curved_surface(cy, ray, &cy_rec))
+	{
 		hit_cy = TRUE;
+		copy_rec(rec, &cy_rec);
+	}
 	return (hit_cy);
 }
