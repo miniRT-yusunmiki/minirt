@@ -33,6 +33,7 @@ t_bool	hit_cylinder_top(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 			rec->p = tmp_rec.p;
 			rec->normal = tmp_rec.normal;
 			rec->color = tmp_rec.color;
+			rec->tmax = tmp_rec.tmax;
 			return (TRUE);
 		}
 	}
@@ -57,6 +58,7 @@ t_bool	hit_cylinder_bottom(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 			rec->p = tmp_rec.p;
 			rec->normal = tmp_rec.normal;
 			rec->color = tmp_rec.color;
+			rec->tmax = tmp_rec.tmax;
 			return (TRUE);
 		}
 	}
@@ -94,6 +96,7 @@ t_bool	hit_curved_surface(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 	rec->t = root;
 	set_face_normal(ray, rec);
 	rec->color = cy->color;
+	rec->tmax = rec->t;
 	return (TRUE);
 }
 
