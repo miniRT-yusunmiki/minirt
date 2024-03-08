@@ -92,10 +92,10 @@ t_bool	hit_curved_surface(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 		return (FALSE);
 	rec->t = fm.root;
 	rec->p = ray_at(ray, fm.root);
-	rec->normal = vunit(vplus(vplus(cy->bottom_center, vmults(cy->normal, h)), rec->p));
+	rec->normal = vunit(vminus(rec->p, vplus(cy->bottom_center, vmults(cy->normal, h))));
 	rec->color = cy->color;
 	rec->tmax = rec->t;
-	// set_face_normal(ray, rec);
+	set_face_normal(ray, rec);
 	return (TRUE);
 }
 
