@@ -1,41 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structures.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/09 18:25:23 by yusung            #+#    #+#             */
+/*   Updated: 2024/03/09 18:25:24 by yusung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
 # define WRONG_INFO	-999
 # define EPSILON 1e-6
 
-typedef enum e_bool	t_bool;
-typedef enum e_object_type  t_object_type;
+typedef enum e_bool			t_bool;
+typedef enum e_object_type	t_object_type;
 
-typedef	struct s_vec3 t_vec3;
-typedef struct s_vec3 t_point3;
-typedef struct s_vec3 t_color3;
+typedef struct s_vec3		t_vec3;
+typedef struct s_vec3		t_point3;
+typedef struct s_vec3		t_color3;
 
-typedef struct s_ray t_ray;
+typedef struct s_ray		t_ray;
 
-typedef	struct s_canvas t_canvas;
-typedef	struct s_camera	t_camera;
-typedef struct s_viewport t_viewport;
-typedef	struct s_mlxinfo t_mlxinfo;
-typedef struct s_hit_record t_hit_record;
-typedef	struct s_scene t_scene;
-typedef struct s_object t_object;
-typedef struct s_light t_light;
-typedef struct s_sphere t_sphere;
-typedef struct s_plane t_plane;
-typedef struct s_cylinder t_cylinder;
-typedef struct s_formula t_formula;
+typedef struct s_canvas		t_canvas;
+typedef struct s_camera		t_camera;
+typedef struct s_viewport	t_viewport;
+typedef struct s_mlxinfo	t_mlxinfo;
+typedef struct s_hit_record	t_hit_record;
+typedef struct s_scene		t_scene;
+typedef struct s_object		t_object;
+typedef struct s_light		t_light;
+typedef struct s_sphere		t_sphere;
+typedef struct s_plane		t_plane;
+typedef struct s_cylinder	t_cylinder;
+typedef struct s_formula	t_formula;
 
-typedef struct s_cnt	t_cnt;
+typedef struct s_cnt		t_cnt;
 
-struct s_cnt
-{
-	int a;
-	int c;
-	int l;
-};
-
-enum  e_bool
+enum e_bool
 {
 	FALSE,
 	TRUE
@@ -99,14 +104,14 @@ struct s_mlxinfo
 
 struct s_hit_record
 {
-    t_point3    p;
-    t_vec3      normal;
+	t_point3	p;
+	t_vec3		normal;
 	t_vec3		light_dir;
-    double      tmin;
-    double      tmax;
-    double      t;
-    t_bool      front_face;
-    t_color3    color;
+	double		tmin;
+	double		tmax;
+	double		t;
+	t_bool		front_face;
+	t_color3	color;
 };
 
 struct s_scene
@@ -124,7 +129,7 @@ struct s_scene
 
 struct s_object
 {
-	t_object_type   type;
+	t_object_type	type;
 	void			*element;
 	void			*next;
 };
@@ -133,22 +138,22 @@ struct s_light
 {
 	t_point3	origin;
 	t_color3	color;
-	double	  ratio;
+	double		ratio;
 	t_light		*next;
 };
 
 struct s_sphere
 {
 	t_point3	center;
-	double	  radius;
-	double	  radius2;
+	double		radius;
+	double		radius2;
 	t_color3	color;
 };
 
 struct s_plane
 {
 	t_point3	point;
-	t_vec3	  normal;
+	t_vec3		normal;
 	t_color3	color;
 };
 
@@ -170,6 +175,13 @@ struct s_formula
 	double	discriminant;
 	double	sqrtd;
 	double	root;
+};
+
+struct s_cnt
+{
+	int	a;
+	int	c;
+	int	l;
 };
 
 #endif
