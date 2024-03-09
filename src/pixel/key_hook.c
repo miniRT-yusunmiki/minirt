@@ -65,7 +65,7 @@ void	cam_move_right(t_scene *scene)
 
 void	move_light(t_scene *scene)
 {
-	scene->lights->origin = scene->camera.orig;
+	scene->light.origin = scene->camera.orig;
 	shoot_ray(scene, TRUE);
 }
 

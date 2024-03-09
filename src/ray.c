@@ -40,9 +40,9 @@ t_color3	ray_color(t_scene *scene)
 	scene->rec = record_init();
 	if (hit(scene->world, &scene->ray, &scene->rec))
 	{
-		diffuse = get_diffuse(&scene->rec, scene->lights);
+		diffuse = get_diffuse(&scene->rec, &scene->light);
 		total = vplus(diffuse, scene->ambient);
-		if (in_shadow(scene, scene->lights, &scene->rec))
+		if (in_shadow(scene, &scene->light, &scene->rec))
 			return (vmultv(scene->rec.color, scene->ambient));
 		return (vmin(vmultv(scene->rec.color, total), vec3(1, 1, 1)));
 	}

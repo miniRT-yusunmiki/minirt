@@ -6,7 +6,7 @@
 /*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:25:23 by yusung            #+#    #+#             */
-/*   Updated: 2024/03/09 18:25:24 by yusung           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:36:42 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ typedef struct s_camera		t_camera;
 typedef struct s_viewport	t_viewport;
 typedef struct s_mlxinfo	t_mlxinfo;
 typedef struct s_hit_record	t_hit_record;
+typedef struct s_light		t_light;
 typedef struct s_scene		t_scene;
 typedef struct s_object		t_object;
-typedef struct s_light		t_light;
 typedef struct s_sphere		t_sphere;
 typedef struct s_plane		t_plane;
 typedef struct s_cylinder	t_cylinder;
@@ -90,6 +90,13 @@ struct s_viewport
 	t_point3	left_upper;
 };
 
+struct s_light
+{
+	t_point3	origin;
+	t_color3	color;
+	double		ratio;
+};
+
 struct s_mlxinfo
 {
 	void	*mlx_ptr;
@@ -120,7 +127,7 @@ struct s_scene
 	t_canvas		canvas;
 	t_camera		camera;
 	t_object		*world;
-	t_light			*lights;
+	t_light			light;
 	t_color3		ambient;
 	t_viewport		viewport;
 	t_ray			ray;
@@ -132,14 +139,6 @@ struct s_object
 	t_object_type	type;
 	void			*element;
 	void			*next;
-};
-
-struct s_light
-{
-	t_point3	origin;
-	t_color3	color;
-	double		ratio;
-	t_light		*next;
 };
 
 struct s_sphere

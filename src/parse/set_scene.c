@@ -59,24 +59,22 @@ t_viewport	set_viewport(t_canvas canvas, t_camera cam)
 	return (vp);
 }
 
-t_light	*set_light(char **elem)
+t_light	set_light(char **elem)
 {
-	t_light	*light;
+	t_light	light;
 
 	if (count_elem(elem) != 4)
 	{
 		write(2, "wrong light info\n", 18);
 		exit(1);
 	}
-	light = (t_light *)malloc(sizeof(t_light));
-	light->origin = get_point(elem[1]);
-	light->ratio = ft_atof(elem[2]);
-	if (!(0.0 <= light->ratio && light->ratio <= 1.0))
+	light.origin = get_point(elem[1]);
+	light.ratio = ft_atof(elem[2]);
+	if (!(0.0 <= light.ratio && light.ratio <= 1.0))
 	{
 		write(2, "wrong light info\n", 18);
 		exit(1);
 	}
-	light->color = get_color(elem[3]);
-	light->next = NULL;
+	light.color = get_color(elem[3]);
 	return (light);
 }

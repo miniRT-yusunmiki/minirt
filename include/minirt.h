@@ -6,7 +6,7 @@
 /*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:29:27 by yusung            #+#    #+#             */
-/*   Updated: 2024/03/09 18:29:28 by yusung           ###   ########.fr       */
+/*   Updated: 2024/03/09 18:35:55 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_cylinder		*set_cylinder(char **elem);
 t_color3		set_ambient(char **elem);
 t_camera		set_camera(char **elem);
 t_viewport		set_viewport(t_canvas canvas, t_camera cam);
-t_light			*set_light(char **elem);
+t_light			set_light(char **elem);
 
 // pixel
 void			cam_left(t_scene *scene);
@@ -64,7 +64,6 @@ char			*get_next_line(int fd);
 
 t_object		*object(t_object_type type, void *element);
 void			oadd(t_object **list, t_object *new);
-void			ladd(t_light **list, t_light *new);
 
 int				sign_check(const char *s, int *i);
 double			ft_atof(const char *s);

@@ -35,7 +35,6 @@ t_scene	*set_scene(char *file_name)
 	scene->canvas = set_canvas(1920, 1080);
 	scene->mlxinfo = set_mlx(scene->canvas.width, scene->canvas.height, scene);
 	scene->world = NULL;
-	scene->lights = NULL;
 	parse_file(scene, file_name);
 	return (scene);
 }

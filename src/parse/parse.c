@@ -20,7 +20,7 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 	}
 	else if (!ft_strncmp(elem[0], "L", 2))
 	{
-		ladd(&scene->lights, set_light(elem));
+		scene->light = set_light(elem);
 		cnt->l += 1;
 	}
 	else if (!ft_strncmp(elem[0], "sp", 3))

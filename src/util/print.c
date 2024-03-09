@@ -10,14 +10,10 @@ void	print_info(t_scene *scene)
 	printf("camera.dir: %f %f %f\n", scene->camera.dir.x, scene->camera.dir.y, scene->camera.dir.z);
 	printf("camera.fov: %f\n", scene->camera.fov);
 
-	//lights
-	while (scene->lights)
-	{
-		printf("light.origin: %f %f %f\n", scene->lights->origin.x, scene->lights->origin.y, scene->lights->origin.z);
-		printf("light.ratio: %f\n", scene->lights->ratio);
-		printf("light.color: %f %f %f\n", scene->lights->color.x, scene->lights->color.y, scene->lights->color.z);
-		scene->lights = scene->lights->next;
-	}
+	//light
+	printf("light.origin: %f %f %f\n", scene->light.origin.x, scene->light.origin.y, scene->light.origin.z);
+	printf("light.ratio: %f\n", scene->light.ratio);
+	printf("light.color: %f %f %f\n", scene->light.color.x, scene->light.color.y, scene->light.color.z);
 
 	//object
 	while (scene->world)
