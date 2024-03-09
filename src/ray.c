@@ -43,7 +43,7 @@ t_color3	ray_color(t_scene *scene)
 		diffuse = get_diffuse(&scene->rec, scene->lights);
 		total = vplus(diffuse, scene->ambient);
 		if (in_shadow(scene, scene->lights, &scene->rec))
-			return (vmultv(scene->rec.color, vmults(scene->ambient, 0.8)));
+			return (vmultv(scene->rec.color, scene->ambient));
 		return (vmin(vmultv(scene->rec.color, total), vec3(1, 1, 1)));
 	}
 	return (vmin(vmultv(vec3(1, 1, 1), scene->ambient), vec3(1, 1, 1)));
