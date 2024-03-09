@@ -33,7 +33,6 @@ t_hit_record	record_init(void)
 
 t_color3	ray_color(t_scene *scene)
 {
-	// double	t;
 	t_color3	diffuse;
 	t_color3	total;
 
@@ -47,7 +46,4 @@ t_color3	ray_color(t_scene *scene)
 		return (vmin(vmultv(scene->rec.color, total), vec3(1, 1, 1)));
 	}
 	return (vmin(vmultv(vec3(1, 1, 1), scene->ambient), vec3(1, 1, 1)));
-	// t = 0.5 * (scene->ray.dir.y * 2 + 1.0);
-	// // (1-t) * 흰색 + t * 하늘색
-	// return (vplus(vmults(color3(1, 1, 1), 1.0 - t), vmults(color3(0.5, 0.7, 1.0), t)));
 }

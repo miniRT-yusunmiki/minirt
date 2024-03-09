@@ -107,6 +107,7 @@ struct s_hit_record
     double      t;
     t_bool      front_face;
     t_color3    color;
+	id_t		idx;
 };
 
 struct s_scene
@@ -125,6 +126,7 @@ struct s_scene
 struct s_object
 {
 	t_object_type   type;
+	int				idx;
 	void			*element;
 	void			*next;
 };
