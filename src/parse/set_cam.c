@@ -37,7 +37,12 @@ t_camera	set_camera(char **elem)
 		write(2, "wrong camera info\n", 19);
 		exit(1);
 	}
-	camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
+	if (camera.dir.x == 0.0 && camera.dir.y == 1.0 && camera.dir.z == 0.0)
+		camera.right = vunit(vec3(-1, 0, 0));
+	else if (camera.dir.x == 0.0 && camera.dir.y == -1.0 && camera.dir.z == 0.0)
+		camera.right = vunit(vec3(1, 0, 0));
+	else
+		camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
 	camera.up = vunit(vcross(camera.right, camera.dir));
 	return (camera);
 }
