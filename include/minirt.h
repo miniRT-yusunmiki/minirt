@@ -38,10 +38,9 @@ t_viewport		set_viewport(t_canvas canvas, t_camera cam);
 t_light			*set_light(char **elem);
 
 // pixel
-void			cam_left(t_scene *scene);
-void			cam_right(t_scene *scene);
-void			cam_up(t_scene *scene);
-void			cam_down(t_scene *scene);
+void			cam_dir_change(int keycode, t_mlxinfo *mlx_info);
+void			cam_move(int keycode, t_mlxinfo *mlx_info);
+int				exit_hook(void);
 int				key_hook(int keycode, t_mlxinfo *mlx_info);
 int				rgb_to_int(t_color3 pixel_color);
 void			my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color);

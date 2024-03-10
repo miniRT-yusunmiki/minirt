@@ -17,7 +17,7 @@ LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 HIT_SRC = hit_cylinder.c hit_plane.c hit_sphere.c hit.c
 LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = parse.c set_object.c set_scene.c
-PIXEL_SRC = key_hook.c pixel_put.c
+PIXEL_SRC = cam_dir_change.c cam_move.c key_hook.c pixel_put.c
 UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c
 MAIN_SRC = check_arg.c main.c scene.c ray.c
 

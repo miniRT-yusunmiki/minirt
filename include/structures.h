@@ -156,6 +156,7 @@ struct s_plane
 
 struct s_cylinder
 {
+	t_point3	center;
 	t_point3	top_center;
 	t_point3	bottom_center;
 	t_vec3		normal;

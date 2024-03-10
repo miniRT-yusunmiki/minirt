@@ -12,7 +12,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 		if (hit_obj(world, ray, &temp_rec))
 		{
 			hit_anything = TRUE;
-			temp_rec.tmax = temp_rec.t;
+			temp_rec.tmax = temp_rec.t - EPSILON;
 			*rec = temp_rec;
 		}
 		world = world->next;

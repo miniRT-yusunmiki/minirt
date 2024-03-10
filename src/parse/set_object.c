@@ -45,11 +45,12 @@ t_cylinder	*set_cylinder(char **elem)
 		exit(1);
 	}
 	cy = (t_cylinder *)malloc(sizeof(t_cylinder));
-	cy->bottom_center = get_point(elem[1]);
+	cy->center = get_point(elem[1]);
 	cy->normal = vunit(get_vector(elem[2]));
 	cy->radius = ft_atof(elem[3]) * 0.5;
 	cy->height = ft_atof(elem[4]);
 	cy->color = get_color(elem[5]);
-	cy->top_center = vplus(cy->bottom_center, vmults(cy->normal, cy->height));
+	cy->top_center = vplus(cy->center, vmults(cy->normal, cy->height / 2));
+	cy->bottom_center = vplus(cy->center, vmults(cy->normal, (cy->height / 2) * -1));
 	return (cy);
 }
