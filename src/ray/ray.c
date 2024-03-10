@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_ray	ray_primary(t_scene *scene, double u, double v)
 {
@@ -9,8 +9,6 @@ t_ray	ray_primary(t_scene *scene, double u, double v)
 	p = vminus(vplus(scene->viewport.left_upper, vmults(scene->camera.right, u)),
 			vmults(scene->camera.up, v));
 	ray.dir = vunit(vminus(p, scene->camera.orig));
-	// printf("ray.orig: %f, %f, %f\n", ray.orig.x, ray.orig.y, ray.orig.z);
-	// printf("ray.dir: %f, %f, %f\n", ray.dir.x, ray.dir.y, ray.dir.z);
 	return (ray);
 }
 
