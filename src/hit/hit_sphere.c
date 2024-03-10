@@ -1,6 +1,6 @@
 #include "../../include/minirt.h"
 
-t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
+t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec, t_bool shadow)
 {
 	double	tca;
 	double	thc;
@@ -19,17 +19,19 @@ t_bool	hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec)
 		return (FALSE);
 	thc = sqrt(sp->radius2 - pow(d, 2));
 	t = tca - thc;
-	if (t < rec->tmin || t > rec->tmax)
+	if (t < rec->tmin || t >= rec->tmax)
 	{
 		t = tca + thc;
-		if (t < rec->tmin || t > rec->tmax)
+		if (t < rec->tmin || t >= rec->tmax)
 			return (FALSE);
 	}
 	rec->t = t;
 	rec->p = ray_at(ray, t);
-	rec->normal = vdivide(vminus(rec->p, sp->center), sp->radius);
+	rec->normal = vunit(vminus(rec->p, sp->center));
 	rec->color = sp->color;
 	rec->idx = obj->idx;
-	set_face_normal(ray, rec);
+	(void)shadow;
+	// if (shadow == FALSE)
+		set_face_normal(ray, rec);
 	return (TRUE);
 }

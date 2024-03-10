@@ -35,7 +35,7 @@ t_color3	ray_color(t_scene *scene)
 	t_color3	total;
 
 	scene->rec = record_init();
-	if (hit(scene->world, &scene->ray, &scene->rec))
+	if (hit(scene->world, &scene->ray, &scene->rec, FALSE))
 	{
 		diffuse = get_diffuse(&scene->rec, scene->lights);
 		total = vplus(diffuse, scene->ambient);
