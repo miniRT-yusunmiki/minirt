@@ -12,15 +12,18 @@ int	sign_check(const char *s, int *i)
 			sign = -1;
 		*i += 1;
 	}
+	int cnt_dot = 0;
 	idx = *i;
 	while (s[idx])
 	{
 		if (!ft_isdigit(s[idx]) && s[idx] != '.')
 			return (WRONG_INFO);
-		if (s[idx] == '.' && !(s[idx + 1] >= '0' && s[idx + 1] <= '9'))
-			return (WRONG_INFO);
+		if (s[idx] == '.')
+			cnt_dot++;
 		idx++;
 	}
+	if (cnt_dot > 1)
+		return (WRONG_INFO);
 	return (sign);
 }
 
@@ -46,7 +49,11 @@ double	ft_atof(const char *s)
 	len = ft_strlen(s) - 1;
 	while (i <= len && (s[i] >= '0' && s[i] <= '9'))
 		x = x * 0.1 + (s[len--] - '0') * 0.1;
-	return ((n + x) * sign);
+	x = n + x;
+	if (fabs(x - n) >= 1.0)
+		return (WRONG_INFO);
+	// printf("%f\n", x * sign);
+	return (x * sign);
 }
 
 t_vec3	get_vector(char *s)
