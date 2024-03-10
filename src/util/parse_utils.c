@@ -58,7 +58,7 @@ double	ft_atof(const char *s)
 		write(2, "wrong double format\n", 21);
 		exit(1);
 	}
-	printf("%f\n", x * sign);
+	// printf("%f\n", x * sign);
 	return (x * sign);
 }
 
@@ -67,6 +67,11 @@ t_vec3	get_vector(char *s)
 	char		**elem;
 	t_vec3		vector;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong vector info\n", 19);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
@@ -91,6 +96,11 @@ t_point3	get_point(char *s)
 	char		**elem;
 	t_point3	point;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong point info\n", 18);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
@@ -108,6 +118,11 @@ t_color3	get_color(char *s)
 	char		**elem;
 	t_color3	color;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong color info\n", 18);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{

@@ -19,3 +19,19 @@ void	free_arr(char **arr)
 		free(arr[i++]);
 	free(arr);
 }
+
+int	count_comma(char *s)
+{
+	int	cnt;
+	int	i;
+
+	cnt = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == ',')
+			cnt++;
+		i++;
+	}
+	return (cnt);
+}
