@@ -39,7 +39,10 @@ double	ft_atof(const char *s)
 	i = 0;
 	sign = sign_check(s, &i);
 	if (sign == WRONG_INFO)
-		return (WRONG_INFO);
+	{
+		write(2, "wrong double format\n", 21);
+		exit(1);
+	}
 	n = 0;
 	while (s[i] >= '0' && s[i] <= '9')
 		n = n * 10 + (s[i++] - '0');
@@ -51,8 +54,11 @@ double	ft_atof(const char *s)
 		x = x * 0.1 + (s[len--] - '0') * 0.1;
 	x = n + x;
 	if (fabs(x - n) >= 1.0)
-		return (WRONG_INFO);
-	// printf("%f\n", x * sign);
+	{
+		write(2, "wrong double format\n", 21);
+		exit(1);
+	}
+	printf("%f\n", x * sign);
 	return (x * sign);
 }
 
