@@ -14,12 +14,12 @@ void	check_arg(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		write(2, "Incorrect number of arguments\n", 31);
+		write(2, "Error\nIncorrect number of arguments\n", 37);
 		exit(1);
 	}
 	if (!is_rt_file(argv[1]))
 	{
-		write(2, "The first argument must be a file with .rt extension.\n", 54);
+		write(2, "Error\nThe first argument must be a .rt file\n", 44);
 		exit(1);
 	}
 }
