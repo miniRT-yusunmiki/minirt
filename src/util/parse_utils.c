@@ -12,15 +12,18 @@ int	sign_check(const char *s, int *i)
 			sign = -1;
 		*i += 1;
 	}
+	int cnt_dot = 0;
 	idx = *i;
 	while (s[idx])
 	{
 		if (!ft_isdigit(s[idx]) && s[idx] != '.')
 			return (WRONG_INFO);
-		if (s[idx] == '.' && !(s[idx + 1] >= '0' && s[idx + 1] <= '9'))
-			return (WRONG_INFO);
+		if (s[idx] == '.')
+			cnt_dot++;
 		idx++;
 	}
+	if (cnt_dot > 1)
+		return (WRONG_INFO);
 	return (sign);
 }
 
@@ -36,7 +39,10 @@ double	ft_atof(const char *s)
 	i = 0;
 	sign = sign_check(s, &i);
 	if (sign == WRONG_INFO)
-		return (WRONG_INFO);
+	{
+		write(2, "wrong double format\n", 21);
+		exit(1);
+	}
 	n = 0;
 	while (s[i] >= '0' && s[i] <= '9')
 		n = n * 10 + (s[i++] - '0');
@@ -46,7 +52,14 @@ double	ft_atof(const char *s)
 	len = ft_strlen(s) - 1;
 	while (i <= len && (s[i] >= '0' && s[i] <= '9'))
 		x = x * 0.1 + (s[len--] - '0') * 0.1;
-	return ((n + x) * sign);
+	x = n + x;
+	if (fabs(x - n) >= 1.0)
+	{
+		write(2, "wrong double format\n", 21);
+		exit(1);
+	}
+	// printf("%f\n", x * sign);
+	return (x * sign);
 }
 
 t_vec3	get_vector(char *s)
@@ -54,6 +67,11 @@ t_vec3	get_vector(char *s)
 	char		**elem;
 	t_vec3		vector;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong vector info\n", 19);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
@@ -78,6 +96,11 @@ t_point3	get_point(char *s)
 	char		**elem;
 	t_point3	point;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong point info\n", 18);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
@@ -95,6 +118,11 @@ t_color3	get_color(char *s)
 	char		**elem;
 	t_color3	color;
 
+	if (count_comma(s) != 2)
+	{
+		write(2, "wrong color info\n", 18);
+		exit(1);
+	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{

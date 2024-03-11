@@ -67,6 +67,7 @@ t_point3		get_point(char *s);
 t_color3		get_color(char *s);
 
 int				count_elem(char **elem);
+int         	count_comma(char *s);
 void			free_arr(char **arr);
 
 // utils - vec_utils.c
