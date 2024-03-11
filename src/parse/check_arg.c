@@ -1,4 +1,4 @@
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
 t_bool	is_rt_file(char *arg1)
 {

@@ -9,7 +9,7 @@ t_bool	hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec)
     if (fabs(denom) < EPSILON)
 		return (FALSE);
 	t = vdot(vminus(pl->point, ray->orig), pl->normal) / denom;
-	if (t < rec->tmin || rec->tmax < t)
+	if (t < rec->tmin || t >= rec->tmax - EPSILON)
 		return (FALSE);
 	rec->t = t;
 	rec->p = ray_at(ray, t);

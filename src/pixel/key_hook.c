@@ -20,6 +20,11 @@ static void	cam_zoomout(t_scene *s)
 	shoot_ray(s, TRUE);
 }
 
+int	exit_hook(void)
+{
+	exit(0);
+}
+
 int	key_hook(int keycode, t_mlxinfo *mlx_info)
 {
 	if (keycode == 53)

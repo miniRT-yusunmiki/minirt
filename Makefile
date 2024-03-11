@@ -16,15 +16,17 @@ LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
 HIT_SRC = hit_cylinder.c hit_plane.c hit_sphere.c hit.c
 LIGHT_SRC = diffuse.c shadow.c
-PARSE_SRC = parse.c set_object.c set_scene.c
+PARSE_SRC = check_arg.c parse.c set_cam.c set_object.c set_scene.c
 PIXEL_SRC = cam_dir_change.c cam_move.c key_hook.c pixel_put.c
+RAY_SRC = ray.c shoot_ray.c
 UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c
-MAIN_SRC = check_arg.c main.c scene.c ray.c
+MAIN_SRC = main.c
 
 SRCS = $(addprefix $(SRC_DIR)/hit/, $(HIT_SRC)) \
 		$(addprefix $(SRC_DIR)/light/, $(LIGHT_SRC)) \
 		$(addprefix $(SRC_DIR)/parse/, $(PARSE_SRC)) \
 		$(addprefix $(SRC_DIR)/pixel/, $(PIXEL_SRC)) \
+		$(addprefix $(SRC_DIR)/ray/, $(RAY_SRC)) \
 		$(addprefix $(SRC_DIR)/util/, $(UTIL_SRC)) \
 		$(addprefix $(SRC_DIR)/, $(MAIN_SRC))
 

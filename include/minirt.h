@@ -37,9 +37,17 @@ t_camera		set_camera(char **elem);
 t_viewport		set_viewport(t_canvas canvas, t_camera cam);
 t_light			*set_light(char **elem);
 
+t_bool			is_rt_file(char *arg1);
+void			check_arg(int argc, char **argv);
+void			parse_file(t_scene *scene, char *file_name);
+t_canvas		set_canvas(int width, int height);
+t_mlxinfo		*set_mlx(int width, int height, t_scene *scene);
+t_scene 		*set_scene(char *file_name);
+
 // pixel
 void			cam_dir_change(int keycode, t_mlxinfo *mlx_info);
 void			cam_move(int keycode, t_mlxinfo *mlx_info);
+int				exit_hook(void);
 int				key_hook(int keycode, t_mlxinfo *mlx_info);
 int				rgb_to_int(t_color3 pixel_color);
 void			my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color);
@@ -48,7 +56,7 @@ void			put_ray_pixel(int y, int x, t_scene *scene, int dummy);
 // util
 char			*get_next_line(int fd);
 
-t_object		*object(t_object_type type, void *element);
+t_object		*object(t_object_type type, void *elementm);
 void			oadd(t_object **list, t_object *new);
 void			ladd(t_light **list, t_light *new);
 
@@ -77,19 +85,10 @@ t_vec3	    	vunit(t_vec3 vec);
 t_vec3			vdivide(t_vec3 vec, double t);
 t_vec3  		vmin(t_vec3 vec1, t_vec3 vec2);
 
-t_bool			is_rt_file(char *arg1);
-void			check_arg(int argc, char **argv);
-
-void			parse_file(t_scene *scene, char *file_name);
-
+// ray
 t_ray       	ray_primary(t_scene *scene, double u, double v);
 t_point3		ray_at(t_ray *ray, double t);
 t_color3    	ray_color(t_scene *scene);
-
-t_canvas		set_canvas(int width, int height);
-t_mlxinfo		*set_mlx(int width, int height, t_scene *scene);
-t_scene 		*set_scene(char *file_name);
-
 void			shoot_ray(t_scene *scene, int dummy);
 
 void			print_info(t_scene *scene);
