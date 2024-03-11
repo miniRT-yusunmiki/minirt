@@ -40,7 +40,7 @@ double	ft_atof(const char *s)
 	sign = sign_check(s, &i);
 	if (sign == WRONG_INFO)
 	{
-		write(2, "wrong double format\n", 21);
+		write(2, "Error\nwrong double format\n", 27);
 		exit(1);
 	}
 	n = 0;
@@ -55,7 +55,7 @@ double	ft_atof(const char *s)
 	x = n + x;
 	if (fabs(x - n) >= 1.0)
 	{
-		write(2, "wrong double format\n", 21);
+		write(2, "Error\nwrong double format\n", 27);
 		exit(1);
 	}
 	// printf("%f\n", x * sign);
@@ -69,13 +69,13 @@ t_vec3	get_vector(char *s)
 
 	if (count_comma(s) != 2)
 	{
-		write(2, "wrong vector info\n", 19);
+		write(2, "Error\nwrong vector info\n", 25);
 		exit(1);
 	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
-		write(2, "wrong vector info\n", 19);
+		write(2, "Error\nwrong vector info\n", 25);
 		exit(1);
 	}
 	vector.x = ft_atof(elem[0]);
@@ -85,7 +85,7 @@ t_vec3	get_vector(char *s)
 			&& (-1.0 <= vector.y && vector.y <= 1.0)
 			&& (-1.0 <= vector.z && vector.z <= 1.0)))
 	{
-		write(2, "wrong range vector -1.0~1.0\n", 29);
+		write(2, "Error\nwrong range vector -1.0~1.0\n", 35);
 		exit(1);
 	}
 	free_arr(elem);
@@ -99,13 +99,13 @@ t_point3	get_point(char *s)
 
 	if (count_comma(s) != 2)
 	{
-		write(2, "wrong point info\n", 18);
+		write(2, "Error\nwrong point info\n", 24);
 		exit(1);
 	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
-		write(2, "wrong point info\n", 18);
+		write(2, "Error\nwrong point info\n", 24);
 		exit(1);
 	}
 	point.x = ft_atof(elem[0]);
@@ -122,13 +122,13 @@ t_color3	get_color(char *s)
 
 	if (count_comma(s) != 2)
 	{
-		write(2, "wrong color info\n", 18);
+		write(2, "Error\nwrong color info\n", 24);
 		exit(1);
 	}
 	elem = ft_split(s, ',');
 	if (count_elem(elem) != 3)
 	{
-		write(2, "wrong color info\n", 18);
+		write(2, "Error\nwrong color info\n", 24);
 		exit(1);
 	}
 	color.x = ft_atof(elem[0]) / 255;
@@ -138,7 +138,7 @@ t_color3	get_color(char *s)
 			&& (0.0 <= color.y && color.y <= 1.0)
 			&& (0.0 <= color.z && color.z <= 1.0)))
 	{
-		write(2, "wrong range color 0~255\n", 25);
+		write(2, "Error\nwrong range color 0~255\n", 31);
 		exit(1);
 	}
 	free_arr(elem);

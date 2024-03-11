@@ -7,13 +7,13 @@ t_color3	set_ambient(char **elem)
 
 	if (count_elem(elem) != 3)
 	{
-		write(2, "wrong ambient info\n", 20);
+		write(2, "Error\nwrong ambient info\n", 26);
 		exit(1);
 	}
 	ratio = ft_atof(elem[1]);
 	if (!(0.0 <= ratio && ratio <= 1.0))
 	{
-		write(2, "wrong ambient info\n", 20);
+		write(2, "Error\nwrong ambient info\n", 26);
 		exit(1);
 	}
 	color = get_color(elem[2]);
@@ -26,7 +26,7 @@ t_camera	set_camera(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong camera info\n", 19);
+		write(2, "Error\nwrong camera info\n", 25);
 		exit(1);
 	}
 	camera.orig = get_point(elem[1]);
@@ -34,7 +34,7 @@ t_camera	set_camera(char **elem)
 	camera.fov = ft_atof(elem[3]);
 	if (!(0 <= camera.fov && camera.fov <= 180))
 	{
-		write(2, "wrong camera info\n", 19);
+		write(2, "Error\nwrong camera info\n", 25);
 		exit(1);
 	}
 	if (camera.dir.x == 0.0 && camera.dir.y == 1.0 && camera.dir.z == 0.0)
@@ -68,7 +68,7 @@ t_light	*set_light(char **elem)
 
 	if (count_elem(elem) != 4)
 	{
-		write(2, "wrong light info\n", 18);
+		write(2, "Error\nwrong light info\n", 24);
 		exit(1);
 	}
 	light = (t_light *)malloc(sizeof(t_light));
@@ -76,7 +76,7 @@ t_light	*set_light(char **elem)
 	light->ratio = ft_atof(elem[2]);
 	if (!(0.0 <= light->ratio && light->ratio <= 1.0))
 	{
-		write(2, "wrong light info\n", 18);
+		write(2, "Error\nwrong light info\n", 24);
 		exit(1);
 	}
 	light->color = get_color(elem[3]);

@@ -31,7 +31,7 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 		oadd(&scene->world, object(CY, set_cylinder(elem)));
 	else
 	{
-		write(2, "non-existent identifier\n", 25);
+		write(2, "Error\nnon-existent identifier\n", 31);
 		exit(1);
 	}
 	free_arr(elem);
@@ -48,7 +48,7 @@ void	check_id_cnt(t_cnt cnt)
 {
 	if (cnt.a != 1 || cnt.c != 1 || cnt.l != 1)
 	{
-		write(2, "only one ambient, camera, light\n", 33);
+		write(2, "Error\nonly one ambient, camera, light\n", 39);
 		exit(1);
 	}
 }
@@ -62,7 +62,7 @@ void	parse_file(t_scene *scene, char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 	{
-		write(2, "open fail\n", 11);
+		write(2, "Error\nopen failed\n", 19);
 		exit(1);
 	}
 	init_cnt(&cnt);
