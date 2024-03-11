@@ -19,7 +19,7 @@ LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = check_arg.c parse.c set_cam.c set_object.c set_scene.c
 PIXEL_SRC = cam_dir_change.c cam_move.c key_hook.c pixel_put.c
 RAY_SRC = ray.c shoot_ray.c
-UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c\
+UTIL_SRC = ft_atof.c get_next_line.c list_utils.c parse_utils.c utils.c\
 			vec_utils_basic.c vec_utils_create.c vec_utils_product.c
 MAIN_SRC = main.c
 
