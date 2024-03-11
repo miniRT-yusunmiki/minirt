@@ -24,6 +24,7 @@ typedef struct s_light t_light;
 typedef struct s_sphere t_sphere;
 typedef struct s_plane t_plane;
 typedef struct s_cylinder t_cylinder;
+typedef struct s_sp_cal t_sp_cal;
 typedef struct s_formula t_formula;
 
 typedef struct s_cnt	t_cnt;
@@ -162,6 +163,14 @@ struct s_cylinder
 	double		radius;
 	double		height;
 	t_color3	color;
+};
+
+struct s_sp_cal
+{
+	t_vec3 	L;
+	double	tca;
+	double	thc;
+	double	d;
 };
 
 struct s_formula
