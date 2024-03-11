@@ -4,6 +4,7 @@ int	sign_check(const char *s, int *i)
 {
 	int	sign;
 	int	idx;
+	int	cnt_dot;
 
 	sign = 1;
 	if (s[*i] == '-' || s[*i] == '+')
@@ -12,7 +13,7 @@ int	sign_check(const char *s, int *i)
 			sign = -1;
 		*i += 1;
 	}
-	int cnt_dot = 0;
+	cnt_dot = 0;
 	idx = *i;
 	while (s[idx])
 	{
@@ -27,8 +28,20 @@ int	sign_check(const char *s, int *i)
 	return (sign);
 }
 
-//s 이 올바른 double 형태를 갖춘 경우에 정상 작동하는 ft_atof (문자열 시작과 끝에 공백도 존재하면 안됨)
-double	ft_atof(const char *s) 
+double	check_double_range(double n, double x)
+{
+	double	result;
+
+	result = n + x;
+	if (result == 0.0 && fabs(result - n) >= 1.0)
+	{
+		write(2, "Error\nwrong double format\n", 27);
+		exit(1);
+	}
+	return (result);
+}
+
+double	ft_atof(const char *s)
 {
 	int		i;
 	int		sign;
@@ -52,14 +65,7 @@ double	ft_atof(const char *s)
 	len = ft_strlen(s) - 1;
 	while (i <= len && (s[i] >= '0' && s[i] <= '9'))
 		x = x * 0.1 + (s[len--] - '0') * 0.1;
-	x = n + x;
-	if (fabs(x - n) >= 1.0)
-	{
-		write(2, "Error\nwrong double format\n", 27);
-		exit(1);
-	}
-	// printf("%f\n", x * sign);
-	return (x * sign);
+	return (check_double_range(n, x) * sign);
 }
 
 t_vec3	get_vector(char *s)
@@ -67,13 +73,8 @@ t_vec3	get_vector(char *s)
 	char		**elem;
 	t_vec3		vector;
 
-	if (count_comma(s) != 2)
-	{
-		write(2, "Error\nwrong vector info\n", 25);
-		exit(1);
-	}
 	elem = ft_split(s, ',');
-	if (count_elem(elem) != 3)
+	if (count_comma(s) != 2 || count_elem(elem) != 3)
 	{
 		write(2, "Error\nwrong vector info\n", 25);
 		exit(1);
@@ -120,13 +121,8 @@ t_color3	get_color(char *s)
 	char		**elem;
 	t_color3	color;
 
-	if (count_comma(s) != 2)
-	{
-		write(2, "Error\nwrong color info\n", 24);
-		exit(1);
-	}
 	elem = ft_split(s, ',');
-	if (count_elem(elem) != 3)
+	if (count_comma(s) != 2 || count_elem(elem) != 3)
 	{
 		write(2, "Error\nwrong color info\n", 24);
 		exit(1);
