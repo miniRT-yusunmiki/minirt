@@ -81,10 +81,10 @@ t_bool	hit_curved_surface(t_cylinder *cy, t_ray *ray, t_hit_record *rec)
 
 	if (get_root(cy, ray, &fm) == FALSE)
 		return (FALSE);
-	if (fm.root < rec->tmin || fm.root > rec->tmax)
+	if (fm.root < rec->tmin || fm.root >= rec->tmax - EPSILON)
 	{
 		fm.root = ((fm.half_b * -1) + fm.sqrtd) / fm.a;
-		if (fm.root < rec->tmin || fm.root > rec->tmax)
+		if (fm.root < rec->tmin || fm.root >= rec->tmax - EPSILON)
 			return (FALSE);
 	}
 	h = in_height_range(cy, ray, fm.root);

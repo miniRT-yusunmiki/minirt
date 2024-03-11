@@ -33,10 +33,10 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	if (t[0] > t[1])
 		ft_swap(&t[0], &t[1]);
 	root = t[0];
-	if (root < rec->tmin || root >= rec->tmax)
+	if (root < rec->tmin || root >= rec->tmax - EPSILON)
 	{
 		root = t[1];
-		if (root < rec->tmin || root >= rec->tmax)
+		if (root < rec->tmin || root >= rec->tmax - EPSILON)
 			return (FALSE);
 	}
 	rec->t = root;
