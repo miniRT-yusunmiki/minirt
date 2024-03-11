@@ -88,6 +88,7 @@ t_vec3	get_vector(char *s)
 		write(2, "wrong range vector -1.0~1.0\n", 29);
 		exit(1);
 	}
+	free_arr(elem);
 	return (vector);
 }
 
@@ -110,6 +111,7 @@ t_point3	get_point(char *s)
 	point.x = ft_atof(elem[0]);
 	point.y = ft_atof(elem[1]);
 	point.z = ft_atof(elem[2]);
+	free_arr(elem);
 	return (point);
 }
 
@@ -139,5 +141,6 @@ t_color3	get_color(char *s)
 		write(2, "wrong range color 0~255\n", 25);
 		exit(1);
 	}
+	free_arr(elem);
 	return (color);
 }

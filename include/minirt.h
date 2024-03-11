@@ -48,7 +48,7 @@ t_scene 		*set_scene(char *file_name);
 void			cam_dir_change(int keycode, t_mlxinfo *mlx_info);
 void			cam_move(int keycode, t_mlxinfo *mlx_info);
 int				exit_hook(void);
-int				key_hook(int keycode, t_mlxinfo *mlx_info);
+int				key_hook(int keycode, t_scene *scene);
 int				rgb_to_int(t_color3 pixel_color);
 void			my_mlx_pixel_put(t_scene *scene, int x, int y, t_color3	pixel_color);
 void			put_ray_pixel(int y, int x, t_scene *scene, int dummy);
@@ -69,6 +69,7 @@ t_color3		get_color(char *s);
 int				count_elem(char **elem);
 int         	count_comma(char *s);
 void			free_arr(char **arr);
+void			free_list(t_object *world);
 
 // utils - vec_utils.c
 t_vec3		    vec3(double x, double y, double z);

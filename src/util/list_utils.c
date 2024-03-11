@@ -41,3 +41,16 @@ void	ladd(t_light **list, t_light *new)
         cur = cur->next;
     cur->next = new;
 }
+
+void    free_list(t_object *world)
+{
+    t_object    *tmp;
+
+    while (world)
+    {
+        free(world->element);
+        tmp = world->next;
+        free(world);
+        world = tmp;
+    }
+}

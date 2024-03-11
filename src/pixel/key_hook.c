@@ -25,11 +25,15 @@ int	exit_hook(void)
 	exit(0);
 }
 
-int	key_hook(int keycode, t_mlxinfo *mlx_info)
+int	key_hook(int keycode, t_scene *scene)
 {
+	t_mlxinfo	*mlx_info;
+
+	mlx_info = scene->mlxinfo;
 	if (keycode == 53)
 	{
 		mlx_destroy_window(mlx_info->mlx_ptr, mlx_info->win_ptr);
+		free_list(scene->world);
 		exit(0);
 	}
 	else if (keycode == 123 || keycode == 124 || keycode == 125 || keycode == 126)

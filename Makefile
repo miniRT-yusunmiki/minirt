@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address -g
+CFLAGS = -Werror -Wall -Wextra
 MLX_FLAGS = -framework OpenGL -framework Appkit
 INCS = -Iinclude
 
