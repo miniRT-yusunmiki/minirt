@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hit_sphere.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:00:12 by seonmiki          #+#    #+#             */
+/*   Updated: 2024/03/11 15:00:25 by seonmiki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 static void	ft_swap(double *a, double *b)
@@ -25,7 +37,7 @@ t_bool	hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec)
 	t_sp_cal	sp_cal;
 	double		t[2];
 	double		root;
- 
+
 	if (sp_calculate(sp, ray, &sp_cal) == FALSE)
 		return (FALSE);
 	t[0] = sp_cal.tca - sp_cal.thc;

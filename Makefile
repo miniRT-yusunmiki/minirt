@@ -14,12 +14,13 @@ LIB_DIR = lib
 
 LIBS = $(addprefix $(LIB_DIR)/, $(LIB_NAME))
 
-HIT_SRC = hit_cylinder.c hit_plane.c hit_sphere.c hit.c
+HIT_SRC = hit_cylinder_curv.c hit_cylinder.c hit_plane.c hit_sphere.c hit.c
 LIGHT_SRC = diffuse.c shadow.c
 PARSE_SRC = check_arg.c parse.c set_cam.c set_object.c set_scene.c
 PIXEL_SRC = cam_dir_change.c cam_move.c key_hook.c pixel_put.c
 RAY_SRC = ray.c shoot_ray.c
-UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c vec_utils.c print.c
+UTIL_SRC = get_next_line.c list_utils.c parse_utils.c utils.c\
+			vec_utils_basic.c vec_utils_create.c vec_utils_product.c
 MAIN_SRC = main.c
 
 SRCS = $(addprefix $(SRC_DIR)/hit/, $(HIT_SRC)) \
