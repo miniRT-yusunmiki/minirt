@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_object.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:46:59 by yusung            #+#    #+#             */
+/*   Updated: 2024/03/11 15:48:11 by yusung           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_sphere	*set_sphere(char **elem)
@@ -14,7 +26,7 @@ t_sphere	*set_sphere(char **elem)
 	sphere->center = get_point(elem[1]);
 	diameter = ft_atof(elem[2]);
 	sphere->radius = diameter * 0.5;
-	sphere->radius2 = pow(sphere->radius, 2); 
+	sphere->radius2 = pow(sphere->radius, 2);
 	sphere->color = get_color(elem[3]);
 	return (sphere);
 }
@@ -51,6 +63,7 @@ t_cylinder	*set_cylinder(char **elem)
 	cy->height = ft_atof(elem[4]);
 	cy->color = get_color(elem[5]);
 	cy->top_center = vplus(cy->center, vmults(cy->normal, cy->height / 2));
-	cy->bottom_center = vplus(cy->center, vmults(cy->normal, (cy->height / 2) * -1));
+	cy->bottom_center = \
+		vplus(cy->center, vmults(cy->normal, (cy->height / 2) * -1));
 	return (cy);
 }

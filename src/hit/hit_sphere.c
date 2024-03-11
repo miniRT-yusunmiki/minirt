@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:00:12 by seonmiki          #+#    #+#             */
-/*   Updated: 2024/03/11 15:00:25 by seonmiki         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:44:07 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	ft_swap(double *a, double *b)
 
 static t_bool	sp_calculate(t_sphere *sp, t_ray *ray, t_sp_cal *sp_cal)
 {
-	sp_cal->L = vminus(sp->center, ray->orig);
-	sp_cal->tca = vdot(sp_cal->L, ray->dir);
-	sp_cal->d = sqrt(vlength2(sp_cal->L) - pow(sp_cal->tca, 2));
+	sp_cal->l = vminus(sp->center, ray->orig);
+	sp_cal->tca = vdot(sp_cal->l, ray->dir);
+	sp_cal->d = sqrt(vlength2(sp_cal->l) - pow(sp_cal->tca, 2));
 	if (sp_cal->d > sp->radius)
 		return (FALSE);
 	sp_cal->thc = sqrt(sp->radius2 - pow(sp_cal->d, 2));
