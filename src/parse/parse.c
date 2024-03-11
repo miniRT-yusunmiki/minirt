@@ -1,12 +1,7 @@
 #include "../../include/minirt.h"
 
-void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
+void	set_info(t_scene *scene, char **elem, t_cnt *cnt)
 {
-	char	**elem;
-
-	elem = ft_split_space(s);
-	if (!elem[0])
-		return ;
 	if (!ft_strncmp(elem[0], "A", 2))
 	{
 		scene->ambient = set_ambient(elem);
@@ -23,6 +18,18 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 		ladd(&scene->lights, set_light(elem));
 		cnt->l += 1;
 	}
+}
+
+void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
+{
+	char	**elem;
+
+	elem = ft_split_space(s);
+	if (!elem[0])
+		return ;
+	if (!ft_strncmp(elem[0], "A", 2) || !ft_strncmp(elem[0], "C", 2)
+		|| !ft_strncmp(elem[0], "L", 2))
+		set_info(scene, elem, cnt);
 	else if (!ft_strncmp(elem[0], "sp", 3))
 		oadd(&scene->world, object(SP, set_sphere(elem)));
 	else if (!ft_strncmp(elem[0], "pl", 3))

@@ -7,7 +7,6 @@ void	leak(void)
 
 int	main(int ac, char **av)
 {
-	atexit(leak);
 	t_scene	*scene;
 
 	check_arg(ac, av);

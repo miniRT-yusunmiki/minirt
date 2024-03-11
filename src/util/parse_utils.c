@@ -40,6 +40,19 @@ int	sign_check(const char *s, int *i)
 	return (sign);
 }
 
+double	check_double_range(double n, double x)
+{
+	double	result;
+
+	result = n + x;
+	if (result == 0.0 && fabs(result - n) >= 1.0)
+	{
+		write(2, "Error\nwrong double format\n", 27);
+		exit(1);
+	}
+	return (result);
+}
+
 double	ft_atof(const char *s)
 {
 	int		i;
@@ -64,13 +77,7 @@ double	ft_atof(const char *s)
 	len = ft_strlen(s) - 1;
 	while (i <= len && (s[i] >= '0' && s[i] <= '9'))
 		x = x * 0.1 + (s[len--] - '0') * 0.1;
-	x = n + x;
-	if (fabs(x - n) >= 1.0)
-	{
-		write(2, "Error\nwrong double format\n", 27);
-		exit(1);
-	}
-	return (x * sign);
+	return (check_double_range(n, x) * sign);
 }
 
 t_vec3	get_vector(char *s)
@@ -78,13 +85,8 @@ t_vec3	get_vector(char *s)
 	char		**elem;
 	t_vec3		vector;
 
-	if (count_comma(s) != 2)
-	{
-		write(2, "Error\nwrong vector info\n", 25);
-		exit(1);
-	}
 	elem = ft_split(s, ',');
-	if (count_elem(elem) != 3)
+	if (count_comma(s) != 2 || count_elem(elem) != 3)
 	{
 		write(2, "Error\nwrong vector info\n", 25);
 		exit(1);
@@ -131,13 +133,8 @@ t_color3	get_color(char *s)
 	char		**elem;
 	t_color3	color;
 
-	if (count_comma(s) != 2)
-	{
-		write(2, "Error\nwrong color info\n", 24);
-		exit(1);
-	}
 	elem = ft_split(s, ',');
-	if (count_elem(elem) != 3)
+	if (count_comma(s) != 2 || count_elem(elem) != 3)
 	{
 		write(2, "Error\nwrong color info\n", 24);
 		exit(1);
