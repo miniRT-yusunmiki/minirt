@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:10:10 by seonmiki          #+#    #+#             */
+/*   Updated: 2024/03/11 15:11:09 by seonmiki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 int	sign_check(const char *s, int *i)
 {
 	int	sign;
 	int	idx;
+	int	cnt_dot;
 
 	sign = 1;
 	if (s[*i] == '-' || s[*i] == '+')
@@ -12,7 +25,7 @@ int	sign_check(const char *s, int *i)
 			sign = -1;
 		*i += 1;
 	}
-	int cnt_dot = 0;
+	cnt_dot = 0;
 	idx = *i;
 	while (s[idx])
 	{
@@ -27,8 +40,7 @@ int	sign_check(const char *s, int *i)
 	return (sign);
 }
 
-//s 이 올바른 double 형태를 갖춘 경우에 정상 작동하는 ft_atof (문자열 시작과 끝에 공백도 존재하면 안됨)
-double	ft_atof(const char *s) 
+double	ft_atof(const char *s)
 {
 	int		i;
 	int		sign;
@@ -58,7 +70,6 @@ double	ft_atof(const char *s)
 		write(2, "Error\nwrong double format\n", 27);
 		exit(1);
 	}
-	// printf("%f\n", x * sign);
 	return (x * sign);
 }
 

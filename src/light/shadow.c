@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   shadow.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:01:25 by seonmiki          #+#    #+#             */
+/*   Updated: 2024/03/11 15:01:41 by seonmiki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_bool	in_shadow(t_scene *scene, t_light *light, t_hit_record *rec)
@@ -12,10 +24,6 @@ t_bool	in_shadow(t_scene *scene, t_light *light, t_hit_record *rec)
 	light_rec.tmin = EPSILON;
 	light_rec.tmax = light_len;
 	if (hit(scene->world, &light_ray, &light_rec))
-	{
-		// if (light_rec.idx != rec->idx)
-		// if (vdot(light_ray.dir, rec->p) < 0)
-			return (TRUE);
-	}
+		return (TRUE);
 	return (FALSE);
 }

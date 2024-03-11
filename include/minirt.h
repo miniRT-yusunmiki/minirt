@@ -93,6 +93,4 @@ t_point3		ray_at(t_ray *ray, double t);
 t_color3    	ray_color(t_scene *scene);
 void			shoot_ray(t_scene *scene, int dummy);
 
-void			print_info(t_scene *scene);
-
 #endif
