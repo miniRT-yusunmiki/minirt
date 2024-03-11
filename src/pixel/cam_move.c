@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cam_move.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:02:29 by seonmiki          #+#    #+#             */
+/*   Updated: 2024/03/11 15:02:40 by seonmiki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 static void	cam_move_up(t_scene *s)
@@ -13,6 +25,7 @@ static void	cam_move_down(t_scene *s)
 	s->viewport = set_viewport(s->canvas, s->camera);
 	shoot_ray(s, TRUE);
 }
+
 static void	cam_move_left(t_scene *s)
 {
 	s->camera.orig = vplus(s->camera.orig, vmults(s->camera.right, -10));

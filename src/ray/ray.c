@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seonmiki <seonmiki@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 15:04:29 by seonmiki          #+#    #+#             */
+/*   Updated: 2024/03/11 15:05:21 by seonmiki         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/minirt.h"
 
 t_ray	ray_primary(t_scene *scene, double u, double v)
@@ -6,7 +18,8 @@ t_ray	ray_primary(t_scene *scene, double u, double v)
 	t_point3	p;
 
 	ray.orig = scene->camera.orig;
-	p = vminus(vplus(scene->viewport.left_upper, vmults(scene->camera.right, u)),
+	p = vminus(vplus(scene->viewport.left_upper,
+				vmults(scene->camera.right, u)),
 			vmults(scene->camera.up, v));
 	ray.dir = vunit(vminus(p, scene->camera.orig));
 	return (ray);
@@ -14,7 +27,7 @@ t_ray	ray_primary(t_scene *scene, double u, double v)
 
 t_point3	ray_at(t_ray *ray, double t)
 {
-	t_point3 at;
+	t_point3	at;
 
 	at = vplus(ray->orig, vmults(ray->dir, t));
 	return (at);
