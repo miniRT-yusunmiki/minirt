@@ -6,7 +6,7 @@
 /*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:46:57 by yusung            #+#    #+#             */
-/*   Updated: 2024/03/11 15:46:58 by yusung           ###   ########.fr       */
+/*   Updated: 2024/03/11 20:23:44 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ t_camera	set_camera(char **elem)
 		write(2, "Error\nwrong camera info\n", 25);
 		exit(1);
 	}
-	if (camera.dir.x == 0.0 && camera.dir.y == 1.0 && camera.dir.z == 0.0)
-		camera.right = vunit(vec3(-1, 0, 0));
-	else if (camera.dir.x == 0.0 && camera.dir.y == -1.0 && camera.dir.z == 0.0)
-		camera.right = vunit(vec3(1, 0, 0));
+	if (camera.dir.y == 1.0 || camera.dir.y == -1.0)
+		camera.right = vec3(1, 0, 0);
 	else
 		camera.right = vunit(vcross(camera.dir, vec3(0, 1, 0)));
 	camera.up = vunit(vcross(camera.right, camera.dir));
