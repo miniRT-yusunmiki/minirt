@@ -1,6 +1,6 @@
 #include "../../include/minirt.h"
 
-t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow)
+t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec)
 {
 	t_bool		hit_anything;
 	t_hit_record	temp_rec;
@@ -9,7 +9,7 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow)
 	hit_anything = FALSE;
 	while(world)
 	{
-		if (hit_obj(world, ray, &temp_rec, shadow))
+		if (hit_obj(world, ray, &temp_rec))
 		{
 			hit_anything = TRUE;
 			temp_rec.tmax = temp_rec.t;
@@ -20,13 +20,13 @@ t_bool	hit(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow)
 	return (hit_anything);
 }
 
-t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow)
+t_bool	hit_obj(t_object *world, t_ray *ray, t_hit_record *rec)
 {
 	t_bool	hit_result;
 
 	hit_result = FALSE;
 	if (world->type == SP)
-		hit_result = hit_sphere(world, ray, rec, shadow);
+		hit_result = hit_sphere(world->element, ray, rec);
 	else if (world->type == PL)
 		hit_result = hit_plane(world->element, ray, rec);
 	else if (world->type == CY)

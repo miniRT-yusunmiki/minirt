@@ -1,6 +1,6 @@
 #include "../../include/minirt.h"
 
-void	parse_line(t_scene *scene, char *s, t_cnt *cnt, int *idx)
+void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 {
 	char	**elem;
 
@@ -24,11 +24,11 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt, int *idx)
 		cnt->l += 1;
 	}
 	else if (!ft_strncmp(elem[0], "sp", 3))
-		oadd(&scene->world, object(SP, set_sphere(elem), *idx));
+		oadd(&scene->world, object(SP, set_sphere(elem)));
 	else if (!ft_strncmp(elem[0], "pl", 3))
-		oadd(&scene->world, object(PL, set_plane(elem), *idx));
+		oadd(&scene->world, object(PL, set_plane(elem)));
 	else if (!ft_strncmp(elem[0], "cy", 3))
-		oadd(&scene->world, object(CY, set_cylinder(elem), *idx));
+		oadd(&scene->world, object(CY, set_cylinder(elem)));
 	else
 	{
 		write(2, "non-existent identifier\n", 25);
@@ -58,7 +58,6 @@ void	parse_file(t_scene *scene, char *file_name)
 	int		fd;
 	char	*line;
 	t_cnt	cnt;
-	int		idx;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -67,7 +66,6 @@ void	parse_file(t_scene *scene, char *file_name)
 		exit(1);
 	}
 	init_cnt(&cnt);
-	idx = 0;
 	while (TRUE)
 	{
 		line = get_next_line(fd);
@@ -75,8 +73,7 @@ void	parse_file(t_scene *scene, char *file_name)
 			break ;
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
-		parse_line(scene, line, &cnt, &idx);
-		idx++;
+		parse_line(scene, line, &cnt);
 		free(line);
 	}
 	close(fd);

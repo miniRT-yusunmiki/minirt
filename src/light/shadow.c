@@ -11,7 +11,7 @@ t_bool	in_shadow(t_scene *scene, t_light *light, t_hit_record *rec)
 	light_ray.dir = vunit(rec->light_dir);
 	light_rec.tmin = EPSILON;
 	light_rec.tmax = light_len;
-	if (hit(scene->world, &light_ray, &light_rec, TRUE))
+	if (hit(scene->world, &light_ray, &light_rec))
 	{
 		// if (light_rec.idx != rec->idx)
 		// if (vdot(light_ray.dir, rec->p) < 0)

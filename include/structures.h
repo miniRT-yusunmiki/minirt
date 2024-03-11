@@ -126,7 +126,6 @@ struct s_scene
 struct s_object
 {
 	t_object_type   type;
-	int				idx;
 	void			*element;
 	void			*next;
 };
@@ -135,8 +134,8 @@ struct s_light
 {
 	t_point3	origin;
 	t_color3	color;
-	double	  ratio;
-	t_light		*next;
+	double		ratio;
+	void		*next;
 };
 
 struct s_sphere

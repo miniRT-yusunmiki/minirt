@@ -13,9 +13,9 @@
 // hit
 t_bool			hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_record *rec);
 t_bool			hit_plane(t_plane *pl, t_ray *ray, t_hit_record *rec);
-t_bool			hit_sphere(t_object *obj, t_ray *ray, t_hit_record *rec, t_bool shadow);
-t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow);
-t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec, t_bool shadow);
+t_bool			hit_sphere(t_sphere *sp, t_ray *ray, t_hit_record *rec);
+t_bool			hit(t_object *world, t_ray *ray, t_hit_record *rec);
+t_bool			hit_obj(t_object *world, t_ray *ray, t_hit_record *rec);
 void			set_face_normal(t_ray *r, t_hit_record *rec);
 
 // light
@@ -23,7 +23,7 @@ t_bool			in_shadow(t_scene *scene, t_light *light, t_hit_record *rec);
 t_color3		get_diffuse(t_hit_record *rec, t_light *light);
 
 // parse
-void			parse_line(t_scene *scene, char *s, t_cnt *cnt, int *idx);
+void			parse_line(t_scene *scene, char *s, t_cnt *cnt);
 void			init_cnt(t_cnt *cnt);
 void			check_id_cnt(t_cnt cnt);
 void			parse_file(t_scene *scene, char *file_name);
@@ -56,7 +56,7 @@ void			put_ray_pixel(int y, int x, t_scene *scene, int dummy);
 // util
 char			*get_next_line(int fd);
 
-t_object		*object(t_object_type type, void *elementm, int idx);
+t_object		*object(t_object_type type, void *elementm);
 void			oadd(t_object **list, t_object *new);
 void			ladd(t_light **list, t_light *new);
 

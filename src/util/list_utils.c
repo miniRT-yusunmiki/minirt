@@ -1,13 +1,12 @@
 #include "../../include/minirt.h"
 
-t_object    *object(t_object_type type, void *element, int idx)
+t_object    *object(t_object_type type, void *element)
 {
     t_object    *new;
 
     if (!(new = (t_object *)malloc(sizeof(t_object))))
         return (NULL);
     new->type = type;
-    new->idx = idx;
     new->element = element;
     new->next = NULL;
     return (new);

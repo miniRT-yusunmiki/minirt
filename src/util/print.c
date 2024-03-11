@@ -47,7 +47,6 @@ void	print_info(t_scene *scene)
 			printf("cy.height: %f\n", cy->height);
 			printf("cy.color: %f %f %f\n", cy->color.x, cy->color.y, cy->color.z);
 		}
-		printf("id: %d\n",scene->world->idx);
 		scene->world = scene->world->next;
 	}
 
