@@ -6,7 +6,7 @@
 /*   By: yusung <yusung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 15:46:54 by yusung            #+#    #+#             */
-/*   Updated: 2024/03/11 15:46:55 by yusung           ###   ########.fr       */
+/*   Updated: 2024/03/12 15:29:32 by yusung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	parse_line(t_scene *scene, char *s, t_cnt *cnt)
 
 	elem = ft_split_space(s);
 	if (!elem[0])
+	{
+		free_arr(elem);
 		return ;
+	}
 	if (!ft_strncmp(elem[0], "A", 2) || !ft_strncmp(elem[0], "C", 2)
 		|| !ft_strncmp(elem[0], "L", 2))
 		set_info(scene, elem, cnt);
